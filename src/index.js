@@ -1,4 +1,5 @@
 const table = document.querySelector('tbody#catalog-body')
+const seasons_dropdown = document.querySelector('ul#seasons-btn')
 
 const OFFSET = 150
 
@@ -64,12 +65,12 @@ function renderAllCourses() {
         })
 }
 
-function loadMoreCourses() {
+function loadMoreCourses(season) {
     // articlesArray.forEach(function (articleObj) {
     //     createOneCard(articleObj)
     // })
 
-    fetch(`http://127.0.0.1:3000/courses/${OFFSET}/load_more`)
+    fetch(`http://127.0.0.1:3000/courses/${season}/${OFFSET}/load_more`)
         .then(r => r.json())
         .then(courses => {
             console.log(courses)
@@ -77,8 +78,60 @@ function loadMoreCourses() {
         })
 }
 
+function createSeasonsList() {
+    fetch('http://127.0.0.1:3000/courses/seasons')
+
+    .then(r => r.json())
+    .then(seasons => {
+        console.log(seasons)
+        seasons.forEach(createOneSeasonEle)
+    })
+}
+
+function createOneSeasonEle(season) {
+    const season_str = '' + season
+    console.log(typeof season_str)
+
+    const year = season_str.substring(0, 4)
+
+    console.log(year)
+
+    const season_code = season_str.substring(4, 6)
+    let semester;
+
+    if (season_code == "01") {
+        semester = "Spring"
+    }
+    else if (season_code == "02") {
+        semester = "Summer"
+    } 
+    else {
+        semester = "Fall"
+    }
+
+    const full_semester = semester + " " + year
+
+
+    li = document.createElement('li')
+    li.classList.add('season')
+    li.classList.add('dropdown-item')
+    li.dataset.id = season
+
+    li.textContent = full_semester
+
+
+    seasons_dropdown.append(li)
+
+
+
+
+}
+
+
+
 renderAllCourses()
-loadMoreCourses()
+loadMoreCourses(202103)
+createSeasonsList()
 
 
 // scroll event listener 
