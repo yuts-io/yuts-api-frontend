@@ -65,6 +65,20 @@ function renderAllCourses() {
         })
 }
 
+function renderNewSeasonHome(season) {
+    // articlesArray.forEach(function (articleObj) {
+    //     createOneCard(articleObj)
+    // })
+
+    fetch(`http://127.0.0.1:3000/courses/${season}/new_season_home`)
+        .then(r => r.json())
+        .then(courses => {
+            console.log(courses)
+            courses.forEach(createOneCourse)
+        })
+}
+
+
 function loadMoreCourses(season) {
     // articlesArray.forEach(function (articleObj) {
     //     createOneCard(articleObj)
@@ -127,6 +141,20 @@ function createOneSeasonEle(season) {
 
 }
 
+seasons_dropdown.addEventListener('click', event => {
+    if (event.target.matches('li.season')) {
+        const season = parseInt(event.target.dataset.id)
+
+        const table_name = document.querySelector('main div h1#table-title')
+
+        table_name.textContent = season
+
+        table.innerHTML = ""
+
+        renderNewSeasonHome(season)
+        loadMoreCourses(season)
+    }
+})
 
 
 renderAllCourses()
