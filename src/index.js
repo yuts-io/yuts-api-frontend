@@ -7,7 +7,30 @@ function ordinal(n) {
     var s = ["th", "st", "nd", "rd"];
     var v = n%100;
     return n + (s[(v-20)%10] || s[v] || s[0]);
-  }
+}
+
+function season_to_str(season) {
+    const season_str = '' + season
+
+    const year = season_str.substring(0, 4)
+
+
+    const season_code = season_str.substring(4, 6)
+    let semester;
+
+    if (season_code == "01") {
+        semester = "Spring"
+    }
+    else if (season_code == "02") {
+        semester = "Summer"
+    } 
+    else {
+        semester = "Fall"
+    }
+
+    return semester + " " + year
+}
+
 
 function createOneCourse(course) {
     const tr = document.createElement('tr')
@@ -103,28 +126,9 @@ function createSeasonsList() {
 }
 
 function createOneSeasonEle(season) {
-    const season_str = '' + season
-    console.log(typeof season_str)
+    
 
-    const year = season_str.substring(0, 4)
-
-    console.log(year)
-
-    const season_code = season_str.substring(4, 6)
-    let semester;
-
-    if (season_code == "01") {
-        semester = "Spring"
-    }
-    else if (season_code == "02") {
-        semester = "Summer"
-    } 
-    else {
-        semester = "Fall"
-    }
-
-    const full_semester = semester + " " + year
-
+    const full_semester = season_to_str(season)
 
     li = document.createElement('li')
     li.classList.add('season')
@@ -147,7 +151,7 @@ seasons_dropdown.addEventListener('click', event => {
 
         const table_name = document.querySelector('main div h1#table-title')
 
-        table_name.textContent = season
+        table_name.textContent = season_to_str(season) + " Catalog"
 
         table.innerHTML = ""
 
