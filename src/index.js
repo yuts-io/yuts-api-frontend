@@ -197,9 +197,37 @@ function createOneCourse(course) {
     }
 
 
+    let skills_and_areas;
+    if (course.areas === "" && course.skills === "" ) {
+        console.log("N/A")
+        skills_and_areas = "N/A"
+
+    } else if ( course.skills === "") {
+        console.log(course.areas)
+        skills_and_areas = course.areas.replace(',','')
+    } else if ( course.areas === "") {
+        console.log(course.skills)
+        skills_and_areas = course.skills.replace(',','')
+
+    }
+    else {
+        console.log(course.areas.replace(',','') + " " + course.skills.replace(',',''))
+        skills_and_areas = course.areas
+
+    }
+
+    const td_areas_and_skills = document.createElement('td')
+
+    td_areas_and_skills.textContent = skills_and_areas
+
+    tr.append(td_areas_and_skills)
+
+    createTableEleClassed(course.times_summary, tr)
+
+
     const guttiness = classifyGut(course)
 
-    console.log(course.last_enrollment)
+    // console.log(course.last_enrollment)
 
 
     // const td = document.createElement('td')
