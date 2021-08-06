@@ -22,6 +22,60 @@ function createTableEle(obj, category, outerDiv, rank=false) {
     outerDiv.append(td)
 }
 
+function classifyGut(course) {
+    if (course["gut_percentile"] === null || course["gut_percentile_subject"] === null) {
+        return "N/A"
+    }
+    else if (course["gut_percentile"] >= 75 && course["gut_percentile_subject"] >= 50 && (course["workload_percentile"] != null && course["workload_percentile"] <= 25)
+        && (course["workload_percentile_subject"] != null && course["workload_percentile_subject"] <= 50) && (course["professor_percentile"] != null && course["professor_percentile"] >= 75)
+        && (course["professor_percentile_subject"] != null && course["professor_percentile_subject"] >= 50)) {
+        
+        return "gut"
+    }   
+    else if ((100 >= course["gut_percentile"] && course["gut_percentile"] >= 67) || (100 >= course["gut_percentile_subject"] && course["gut_percentile_subject"] >= 67)) {
+        return "relaxed"
+    }
+    else if ((67 > course["gut_percentile"] && course["gut_percentile"] > 33) || (67 > course["gut_percentile_subject"] && course["gut_percentile"] > 33)) {
+        return "average"
+    }
+    else if (course["gut_percentile"] <= 25 && course["gut_percentile_subject"] < 50 && (course["workload_percentile"] != null && course["workload_percentile"] >= 75)
+    && (course["workload_percentile_subject"] != null && course["workload_percentile_subject"] > 50) && (course["professor_percentile"] != null && course["professor_percentile"] <= 25)
+            && (course["professor_percentile_subject"] != null && course["professor_percentile_subject"] < 50)) {
+        return "grueling"
+    }
+    else {
+    // case when (33 >= course["gut_percentile"] >= 0) || (33 >= course["gut_percentile_subject"] >= 0)
+        return "challenging"
+    }
+}
+
+function classifyWork(course) {
+    if (course["professor_percentile"] === null || course["professor_percentile_subject"] === null) {
+        return "N/A"
+    }
+    else if (course["professor_percentile"] >= 75 && course["professor_percentile_subject"] >= 50 && (course["workload_percentile"] != null && course["workload_percentile"] <= 25)
+        && (course["workload_percentile_subject"] != null && course["workload_percentile_subject"] <= 50) && (course["professor_percentile"] != null && course["professor_percentile"] >= 75)
+        && (course["professor_percentile_subject"] != null && course["professor_percentile_subject"] >= 50)) {
+        
+        return "gut"
+    }   
+    else if ((100 >= course["professor_percentile"] && course["professor_percentile"] >= 67) || (100 >= course["professor_percentile_subject"] && course["professor_percentile_subject"] >= 67)) {
+        return "relaxed"
+    }
+    else if ((67 > course["professor_percentile"] && course["professor_percentile"] > 33) || (67 > course["professor_percentile_subject"] && course["professor_percentile"] > 33)) {
+        return "average"
+    }
+    else if (course["professor_percentile"] <= 25 && course["professor_percentile_subject"] < 50 && (course["workload_percentile"] != null && course["workload_percentile"] >= 75)
+    && (course["workload_percentile_subject"] != null && course["workload_percentile_subject"] > 50) && (course["professor_percentile"] != null && course["professor_percentile"] <= 25)
+            && (course["professor_percentile_subject"] != null && course["professor_percentile_subject"] < 50)) {
+        return "grueling"
+    }
+    else {
+    // case when (33 >= course["gut_percentile"] >= 0) || (33 >= course["gut_percentile_subject"] >= 0)
+        return "challenging"
+    }
+}
+
 function ordinal(n) {
     var s = ["th", "st", "nd", "rd"];
     var v = n%100;
@@ -61,6 +115,7 @@ function createOneCourse(course) {
         <td>${course.course_code}</td>
         <td>${course.title}</td>
         <td>${course.gut_index.toFixed(2)}%</td>
+        <td>${classifyGut(course)}</td>
         <td>${ordinal(course.gut_percentile)}</td>
         <td>${ordinal(course.gut_percentile_subject)}</td>
         
@@ -72,6 +127,7 @@ function createOneCourse(course) {
         <td>${course.course_code}</td>
         <td>${course.title}</td>
         <td>N/A</td>
+        <td>${classifyGut(course)}</td>
         <td>N/A</td>
         <td>N/A</td>
     `
@@ -84,6 +140,10 @@ function createOneCourse(course) {
     createTableEle(course, "average_workload", tr)
     createTableEle(course, "workload_percentile", tr, true)
     createTableEle(course, "workload_percentile_subject", tr, true)
+
+    const guttiness = classifyGut(course)
+
+    console.log(guttiness)
 
 
     // const td = document.createElement('td')
