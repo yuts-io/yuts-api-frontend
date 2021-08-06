@@ -3,6 +3,25 @@ const seasons_dropdown = document.querySelector('ul#seasons-btn')
 
 const OFFSET = 150
 
+function createTableEle(obj, category, outerDiv, rank=false) {
+    const td = document.createElement('td')
+    if (obj[category] != null) {
+        if (!rank) {
+            td.innerHTML = `<td>${obj[category].toFixed(2)}</td>`
+        }
+        else {
+            td.innerHTML = `<td>${ordinal(obj[category])}</td>`
+        }
+
+        
+    }
+    else {
+        td.innerHTML = `<td>N/A</td>`
+    }
+
+    outerDiv.append(td)
+}
+
 function ordinal(n) {
     var s = ["th", "st", "nd", "rd"];
     var v = n%100;
@@ -43,8 +62,9 @@ function createOneCourse(course) {
         <td>${course.title}</td>
         <td>${course.gut_index.toFixed(2)}%</td>
         <td>${ordinal(course.gut_percentile)}</td>
-        <td>${course.average_rating.toFixed(2)}</td>
-        <td>${course.workload_percentile}</td>
+        <td>${ordinal(course.gut_percentile_subject)}</td>
+        
+
     `
     }
     else {
@@ -54,21 +74,29 @@ function createOneCourse(course) {
         <td>N/A</td>
         <td>N/A</td>
         <td>N/A</td>
-        <td>N/A</td>
-
     `
     }
-    const td = document.createElement('td')
-    if (course.average_professor != null) {
-        
-        td.innerHTML = `<td>${course.average_professor.toFixed(2)}</td>`
-        
-    }
-    else {
-        td.innerHTML = `<td>N/A</td>`
-    }
 
-    tr.append(td)
+    createTableEle(course, "average_rating_same_professors", tr)
+    createTableEle(course, "average_professor", tr)
+    createTableEle(course, "professor_percentile", tr, true)
+    createTableEle(course, "professor_percentile_subject", tr, true)
+    createTableEle(course, "average_workload", tr)
+    createTableEle(course, "workload_percentile", tr, true)
+    createTableEle(course, "workload_percentile_subject", tr, true)
+
+
+    // const td = document.createElement('td')
+    // if (course.average_professor != null) {
+        
+    //     td.innerHTML = `<td>${course.average_professor.toFixed(2)}</td>`
+        
+    // }
+    // else {
+    //     td.innerHTML = `<td>N/A</td>`
+    // }
+
+    // tr.append(td)
 
 
     table.append(tr)
@@ -85,7 +113,9 @@ function renderAllCourses() {
         .then(courses => {
             console.log(courses)
             courses.forEach(createOneCourse)
+            loadMoreCourses(202103)
         })
+        
 }
 
 function renderNewSeasonHome(season) {
@@ -98,6 +128,7 @@ function renderNewSeasonHome(season) {
         .then(courses => {
             console.log(courses)
             courses.forEach(createOneCourse)
+            loadMoreCourses(season)
         })
 }
 
@@ -156,13 +187,24 @@ seasons_dropdown.addEventListener('click', event => {
         table.innerHTML = ""
 
         renderNewSeasonHome(season)
-        loadMoreCourses(season)
+        // loadMoreCourses(season)
     }
 })
 
+// let scrolled_once = false
+
+// document.addEventListener('scroll', event => {
+//     if (!scrolled_once) {
+
+//         loadMoreCourses(202103)
+//         scrolled_once = true
+//     }
+        
+// })
+
 
 renderAllCourses()
-loadMoreCourses(202103)
+
 createSeasonsList()
 
 
