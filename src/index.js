@@ -3,11 +3,20 @@ const seasons_dropdown = document.querySelector('ul#seasons-btn')
 
 const OFFSET = 150
 
-function createTableEle(obj, category, outerDiv, rank=false) {
+function createTableEle(obj, category, outerDiv, rank=false, reg_int=false, estimated=false) {
     const td = document.createElement('td')
     if (obj[category] != null) {
         if (!rank) {
-            td.innerHTML = `<td>${obj[category].toFixed(2)}</td>`
+                if (!reg_int) {
+                    td.innerHTML = `<td>${obj[category].toFixed(2)}</td>`
+                }
+                else if (!estimated) {
+                    td.innerHTML = `<td>${obj[category]}</td>`
+                }
+                else {
+                    td.innerHTML = `<td>~${obj[category]}</td>`
+
+                }
         }
         else {
             td.innerHTML = `<td>${ordinal(obj[category])}</td>`
@@ -141,10 +150,15 @@ function createOneCourse(course) {
     tr.classList.add('course')
     tr.dataset.id = course.id
 
+    let profs;
+
+    course.professor_names === "" ? profs = "TBA" : profs = course.professor_names
+
     if (course.gut_index != null) {
         tr.innerHTML = `
         <td>${course.course_code}</td>
         <td>${course.title}</td>
+        <td>${profs}</td>
         <td>${course.gut_index.toFixed(2)}%</td>
         <td>${classifyGut(course)}</td>
         <td>${ordinal(course.gut_percentile)}</td>
@@ -157,6 +171,7 @@ function createOneCourse(course) {
         tr.innerHTML = `
         <td>${course.course_code}</td>
         <td>${course.title}</td>
+        <td>${profs}</td>
         <td>N/A</td>
         <td>${classifyGut(course)}</td>
         <td>N/A</td>
@@ -174,10 +189,17 @@ function createOneCourse(course) {
     createTableEleClassed(classifyWork(course), tr)
     createTableEle(course, "workload_percentile", tr, true)
     createTableEle(course, "workload_percentile_subject", tr, true)
+    if (course.last_enrollment_same_professors){
+        createTableEle(course, "last_enrollment", tr, false, true)
+    }
+    else {
+        createTableEle(course, "last_enrollment", tr, false, true, true)
+    }
+
 
     const guttiness = classifyGut(course)
 
-    // console.log(guttiness)
+    console.log(course.last_enrollment)
 
 
     // const td = document.createElement('td')
