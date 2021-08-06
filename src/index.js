@@ -222,7 +222,7 @@ function createOneCourse(course) {
 
     tr.append(td_areas_and_skills)
 
-    createTableEleClassed(course.times_summary, tr)
+    // createTableEleClassed(course.times_summary, tr)
 
 
     const guttiness = classifyGut(course)
