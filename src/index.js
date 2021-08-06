@@ -82,6 +82,31 @@ function classifyProf(course) {
     }
 }
 
+function classifyWork(course) {
+    if (course["workload_percentile"] === null || course["workload_percentile_subject"] === null) {
+        return "N/A"
+    }
+    else if (course["workload_percentile"] >= 67 && course["workload_percentile_subject"] >= 67) {
+        return "Heavy"
+    }   
+    else if ((67 > course["workload_percentile"] && course["workload_percentile"] >= 33) && (67 > course["workload_percentile_subject"] && course["workload_percentile_subject"] >= 33)) {
+        return "Average"
+    }
+    else if ((course["workload_percentile"] < 33) && (course["workload_percentile_subject"] < 33)) {
+        return "Light"
+    }
+    else if (course["workload_percentile"] > 50 && course["workload_percentile_subject"] >= 67){
+        return "Relatively Harsh"
+    }
+    else if (course["workload_percentile"] < 50 && course["workload_percentile_subject"] <= 33){
+        return "Relatively Light"
+    }
+    else {
+    // case when (33 >= course["gut_percentile"] >= 0) || (33 >= course["gut_percentile_subject"] >= 0)
+        return "Relatively Average"
+    }
+}
+
 function ordinal(n) {
     var s = ["th", "st", "nd", "rd"];
     var v = n%100;
@@ -146,6 +171,7 @@ function createOneCourse(course) {
     createTableEle(course, "professor_percentile", tr, true)
     createTableEle(course, "professor_percentile_subject", tr, true)
     createTableEle(course, "average_workload", tr)
+    createTableEleClassed(classifyWork(course), tr)
     createTableEle(course, "workload_percentile", tr, true)
     createTableEle(course, "workload_percentile_subject", tr, true)
 
