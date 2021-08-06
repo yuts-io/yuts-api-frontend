@@ -1,5 +1,6 @@
 const table = document.querySelector('tbody#catalog-body')
 const seasons_dropdown = document.querySelector('ul#seasons-btn')
+const main_body = document.querySelector('div#main-body')
 
 const OFFSET = 150
 
@@ -144,6 +145,12 @@ function season_to_str(season) {
     return semester + " " + year
 }
 
+function getOneCourse(id) {
+    return fetch(`http://127.0.0.1:3000/courses/${id}`)
+    .then(r => r.json())
+
+}
+
 
 function createOneCourse(course) {
     const tr = document.createElement('tr')
@@ -199,20 +206,20 @@ function createOneCourse(course) {
 
     let skills_and_areas;
     if (course.areas === "" && course.skills === "" ) {
-        console.log("N/A")
+        // console.log("N/A")
         skills_and_areas = "N/A"
 
     } else if ( course.skills === "") {
-        console.log(course.areas)
+        // console.log(course.areas)
         skills_and_areas = course.areas.replace(',','')
     } else if ( course.areas === "") {
-        console.log(course.skills)
+        // console.log(course.skills)
         skills_and_areas = course.skills.replace(',','')
 
     }
     else {
-        console.log(course.areas.replace(',','') + " " + course.skills.replace(',',''))
-        skills_and_areas = course.areas
+        // console.log(course.areas.replace(',','') + " " + course.skills.replace(',',''))
+        skills_and_areas = course.areas.replace(',','') + " " + course.skills.replace(',','')
 
     }
 
@@ -335,6 +342,8 @@ seasons_dropdown.addEventListener('click', event => {
     }
 })
 
+
+
 // let scrolled_once = false
 
 // document.addEventListener('scroll', event => {
@@ -345,6 +354,35 @@ seasons_dropdown.addEventListener('click', event => {
 //     }
         
 // })
+
+main_body.addEventListener('click', event => {
+    if (event.target.matches('tbody td')) {
+        const tr = event.target.closest('tr')
+        const id = tr.dataset.id
+        console.log(id)
+        main_body.innerHTML = ""
+
+
+        const btn = document.createElement('a')
+        btn.classList.add('btn-primary')
+        btn.classList.add('btn')
+        btn.onclick = () => { location.reload() }
+        btn.innerHTML = "Back to Catalog"
+
+        main_body.append(btn)
+
+
+        clicked_course = getOneCourse(id)
+
+        console.log(clicked_course)
+
+        // clicked_course.then(course => {
+
+        //     main_body.append(course.title)
+
+        // })
+    }
+})
 
 
 renderAllCourses()
