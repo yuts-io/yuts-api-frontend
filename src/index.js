@@ -374,13 +374,43 @@ main_body.addEventListener('click', event => {
 
         clicked_course = getOneCourse(id)
 
-        console.log(clicked_course)
+        // console.log(clicked_course)
 
-        // clicked_course.then(course => {
+        clicked_course.then(course => {
 
-        //     main_body.append(course.title)
+            const section = document.createElement('section')
 
-        // })
+            section.innerHTML = `
+            <div class="row row-cols-1 row-cols-md-2 d-flex">
+			<div class="col">
+				<div class="card p-3 w-auto">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">${course.title}</li> 
+						<li class="list-group-item">${course.description}</li> 
+						<li class="list-group-item">Poster email: <%= @post.get_user_email %></li>
+						<li class="list-group-item">Poster phone number: <%= @post.get_user_phone %></li>
+						<li class="list-group-item">Category: <%= @post.category %></li>
+						<li class="list-group-item">Price: $<%= @post.price %></li>
+						<li class="list-group-item">Description: <%= @post.desc %></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card p-3">
+					<% @post.images.each do |img|%>
+						<%= image_tag img.uploaded_image %>
+						<small class="mt-2">Picture Uploaded: <%= img.create_date %></small>
+					<% end %>
+				</div>
+			</div>
+		</div>
+            `
+
+
+
+            main_body.append(section)
+
+        })
     }
 })
 
