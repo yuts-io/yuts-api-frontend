@@ -278,6 +278,7 @@ function renderNewSeasonHome(season) {
         .then(r => r.json())
         .then(courses => {
             console.log(courses)
+            console.log(season)
             courses.forEach(createOneCourse)
             loadMoreCourses(season)
         })
