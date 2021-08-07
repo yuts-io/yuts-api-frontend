@@ -1,8 +1,46 @@
-const table = document.querySelector('tbody#catalog-body')
+let table = document.querySelector('tbody#catalog-body')
 const seasons_dropdown = document.querySelector('ul#seasons-btn')
 const main_body = document.querySelector('div#main-body')
 
 const OFFSET = 150
+
+function refreshTable() {
+    main_body.innerHTML = `
+    <table class="table table-striped table-sticky table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Code</th>
+        <th scope="col">Title</th>
+        <th scope="col">Prof</th>
+        <th scope="col">Gut Index</th>
+        <th scope="col">Guttiness</th>
+        <th scope="col">Gut Rank</th>
+        <th scope="col">Gut Subject Rank</th>
+        <th scope="col">Overall Rating</th>
+        <th scope="col">Prof Rating</th>
+        <th scope="col">Grading</th>
+        <th scope="col">Prof Rank</th>
+        <th scope="col">Prof Subject Rank</th>
+        <th scope="col">Work Rating</th>
+        <th scope="col">Workload</th>
+        <th scope="col">Work Rank</th>
+        <th scope="col">Work Subject Rank</th>
+        <th scope="col">#</th>
+        <th scope="col">Skills/Areas</th>
+        <!-- <th scope="col">Meets</th> -->
+
+
+
+        
+
+      </tr>
+    </thead>
+    <tbody id="catalog-body">
+      <!-- Dynamic table content here -->
+    </tbody>
+    </table>
+    `
+}
 
 function createTableEle(obj, category, outerDiv, rank=false, reg_int=false, estimated=false) {
     const td = document.createElement('td')
@@ -265,6 +303,7 @@ function renderAllCourses() {
             console.log(courses)
             courses.forEach(createOneCourse)
             loadMoreCourses(202103)
+            main_body.dataset.id = courses[0].season_code
         })
         
 }
@@ -279,8 +318,10 @@ function renderNewSeasonHome(season) {
         .then(courses => {
             console.log(courses)
             console.log(season)
+            main_body.dataset.id = courses[0].season_code
             courses.forEach(createOneCourse)
             loadMoreCourses(season)
+            
         })
 }
 
@@ -367,7 +408,19 @@ main_body.addEventListener('click', event => {
         const btn = document.createElement('a')
         btn.classList.add('btn-primary')
         btn.classList.add('btn')
-        btn.onclick = () => { location.reload() }
+        btn.onclick = () => { 
+            main_body.innerHTML = ""
+            refreshTable()
+            table = document.querySelector('tbody#catalog-body')
+
+            const curr_season = main_body.dataset.id
+
+            renderNewSeasonHome(curr_season)
+            const table_name = document.querySelector('main div h1#table-title')
+
+            table_name.textContent = season_to_str(curr_season) + " Catalog"
+    
+         }
         btn.innerHTML = "Back to Catalog"
 
         main_body.append(btn)
