@@ -17,21 +17,19 @@ function createOneComment(commentObj) {
     newComment.innerHTML = `
     <hr>
     <div class="d-flex flex-row align-items-center commented-user">
-        <h5 class="mr-2">[User]</h5><span class="dot mb-1"></span>
+        <h5 class="mb-3 ps-2">Kyle Andruczk</h5>
     </div>
   
-        <div class="container">
-            <div class="col-md-4" style="font-size:1.15rem; word-wrap: break-word; width:67vw; max-width: 1224px; display: inline">
-                <div class="m-0 " style="width: 40px; float: left;">
-                    <i class="bi bi-caret-up-square" style="width: 40px"></i>
-                    <i class="bi bi-caret-down-square" style="width: 40px"></i>
-                </div>
-            </div>
-            <div class="col-md-8" style="font-size:1.15rem; word-wrap: break-word; width:67vw; max-width: 1224px; display: inline">
-                <div>${commentObj.content}</div>
-            </div> 
-        </div> 
             
+        <div class="d-flex bg-light py-3 px-2">
+            <div class="p-2 align-self-center" style= "align-items: stretch !important;">
+                <i style="display: block; font-size: 20px;" class="bi bi-caret-up-square"></i>
+                <i style="display: block; font-size: 20px;" class="bi bi-caret-down-square"></i>
+                
+            </div>
+            <div class="p-2 align-self-center" style="font-size:1.15rem; word-wrap: break-word; width:68rem; max-width: 1224px;">${commentObj.content}</div>
+            
+        </div>
 
         
         
@@ -40,9 +38,9 @@ function createOneComment(commentObj) {
     <div class="container">
         <div class="row">
             <div class= "col">
-                <span class="mb-1 ml-2">5 hours ago</span>
-                <span class="mb-1 ml-2">Edit</span>
-                <span class="mb-1 ml-2">Delete</span>
+                <span class="mb-1 ms-2">5 hours ago</span>
+                <span class="mb-1 ms-2">(Edit</span>
+                <span class="mb-1 ps-1">Delete)</span>
             </div>
         </div>
             
@@ -508,6 +506,7 @@ main_body.addEventListener('click', event => {
         const btn = document.createElement('a')
         btn.classList.add('btn-primary')
         btn.classList.add('btn')
+        btn.classList.add('mb-3')
         btn.onclick = () => { 
             main_body.innerHTML = ""
             refreshTable()
@@ -554,7 +553,7 @@ main_body.addEventListener('click', event => {
 
             comments_section.innerHTML = `
     
-            <div class="container mt-5 mb-5" id="comments">
+            <div class="container mt-5 mb-6" id="comments">
                 <div class="d-flex justify-content-center row">
                     <div class="d-flex flex-column col-md-12">
                         <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
@@ -562,14 +561,14 @@ main_body.addEventListener('click', event => {
                             
                             <div class="d-flex flex-column ml-3">
                                 <div class="d-flex flex-row post-title">
-                                    <h5>Comments</h5><span class="ms-2">(${course.comments.length})</span>
+                                    <h5>Comments (${course.comments.length})</h5>
                                 </div>
 
                             </div>
                         </div>
-                        <div class="coment-bottom bg-white p-2 px-4">
+                        <div class="coment-bottom bg-white p-2 px-3">
                             <form id="comment-form">
-                                <div class="d-flex flex-row input-group mt-4 mb-4">
+                                <div class="d-flex flex-row input-group mt-4 pb-4">
                                     <textarea class="form-control" placeholder="Add comment" aria-label="With textarea"></textarea>
                                     <button type="submit" class="btn btn-primary">Comment</button>
                                 </div>
