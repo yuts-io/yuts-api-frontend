@@ -15,7 +15,29 @@ function createOneComment(commentObj) {
     newComment.classList.add('mt-2')
 
     newComment.innerHTML = `
-    <div class="comment-text-sm"><span>${commentObj.content}</span></div>
+    <hr>
+    <div class="d-flex flex-row align-items-center commented-user">
+        <h5 class="mr-2">[User]</h5><span class="dot mb-1"></span>
+    </div>
+    <div class="container d-flex ">
+        <div class="row">
+            
+            <div class="col-md-8 ps-3 align-self-center" style="font-size:1.15rem; word-wrap: break-word; width:60rem;">
+                ${commentObj.content}
+            </div>
+            <div class="col-md-4">
+                <i class="bi bi-caret-up"></i>
+                <i class="bi bi-caret-down"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+    <span class="mb-1 ml-2">5 hours ago</span>
+    <span class="mb-1 ml-2">Edit</span>
+    <span class="mb-1 ml-2">Delete</span>
+    
+
     `
     outerDiv.append(newComment)
     
@@ -534,7 +556,10 @@ main_body.addEventListener('click', event => {
                         </div>
                         <div class="coment-bottom bg-white p-2 px-4">
                             <form id="comment-form">
-                                <div class="d-flex flex-row add-comment-section mt-4 mb-4"><input type="text" class="form-control mr-3" placeholder="Add comment"><button class="btn btn-primary" type="submit">Comment</button></div>
+                                <div class="d-flex flex-row input-group mt-4 mb-4">
+                                    <textarea class="form-control" placeholder="Add comment" aria-label="With textarea"></textarea>
+                                    <button type="submit" class="btn btn-primary">Comment</button>
+                                </div>
                             </form>
                             <div id="comments-container">
                             </div>
