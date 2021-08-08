@@ -19,29 +19,36 @@ function createOneComment(commentObj) {
     <div class="d-flex flex-row align-items-center commented-user">
         <h5 class="mr-2">[User]</h5><span class="dot mb-1"></span>
     </div>
-    <div class="container d-flex ">
-        <div class="row justify-content-md-center">
-            
-            <div class="col-md-8" style="font-size:1.15rem; word-wrap: break-word; width:67vw; max-width: 1224px; display: inline">
+  
+        <div class="container">
+            <div class="col-md-4" style="font-size:1.15rem; word-wrap: break-word; width:67vw; max-width: 1224px; display: inline">
                 <div class="m-0 " style="width: 40px; float: left;">
                     <i class="bi bi-caret-up-square" style="width: 40px"></i>
                     <i class="bi bi-caret-down-square" style="width: 40px"></i>
                 </div>
-                <div>
-                    ${commentObj.content}
-                </div>  
-
-                
             </div>
+            <div class="col-md-8" style="font-size:1.15rem; word-wrap: break-word; width:67vw; max-width: 1224px; display: inline">
+                <div>${commentObj.content}</div>
+            </div> 
+        </div> 
             
 
+        
+        
+ 
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class= "col">
+                <span class="mb-1 ml-2">5 hours ago</span>
+                <span class="mb-1 ml-2">Edit</span>
+                <span class="mb-1 ml-2">Delete</span>
+            </div>
         </div>
-        
-        
+            
+
     </div>
-    <span class="mb-1 ml-2">5 hours ago</span>
-    <span class="mb-1 ml-2">Edit</span>
-    <span class="mb-1 ml-2">Delete</span>
+
     
 
     `
