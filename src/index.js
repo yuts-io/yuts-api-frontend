@@ -4,6 +4,41 @@ const main_body = document.querySelector('div#main-body')
 
 const OFFSET = 150
 
+function search() {
+    console.log("searched")
+    const input = document.querySelector('input#searchBar')
+    const filter = input.value.toUpperCase()
+    const rows = document.querySelectorAll("tbody#catalog-body tr.course")
+    // const tableEles = document.querySelectorAll("tbody#catalog-body tr.course td")
+    
+
+
+    for (let i = 0; i < rows.length; i++) {
+        let ele = rows[i].getElementsByTagName("td")[0]
+        let txtValue = ele.textContent || ele.innerText
+        console.log(txtValue)
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            rows[i].style.display = ""
+        } else {
+            rows[i].style.display = "none"
+        }
+    } 
+}
+
+function checkIfBlank(course, course_attr, tba=false) {
+    if (course[course_attr] === "" || course[course_attr] === null) {
+        if (tba) {
+            return "TBA"
+        }
+        else {
+            return "N/A"
+        }
+    }
+    else {
+        return course[course_attr]
+    }
+}
+
 function refreshTable() {
     main_body.innerHTML = `
     <table class="table table-striped table-sticky table-hover">
@@ -495,6 +530,11 @@ main_body.addEventListener('click', event => {
     
             }
 
+            const meets = checkIfBlank(course, "times_summary", true)
+
+            const location = checkIfBlank(course, "locations_summary", true)
+
+
     
 
             section.innerHTML = `
@@ -513,11 +553,11 @@ main_body.addEventListener('click', event => {
                </div>
                <div class="m-auto py-2 row">
                   <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Meets</span></div>
-                  <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">TTh 11:35am-12:50pm</div>
+                  <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">${meets}</div>
                </div>
                <div class="m-auto py-2 row">
                   <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Location</span></div>
-                  <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">TBA</div>
+                  <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">${location}</div>
                </div>
                <div class="m-auto py-2 row">
                   <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Section</span></div>
