@@ -1,23 +1,30 @@
 let table = document.querySelector('tbody#catalog-body')
 const seasons_dropdown = document.querySelector('ul#seasons-btn')
 const main_body = document.querySelector('div#main-body')
+const searchForm = document.querySelector('form#searchForm')
 
 const OFFSET = 150
 
 function search() {
     console.log("searched")
-    const input = document.querySelector('input#searchBar')
-    const filter = input.value.toUpperCase()
+    const searchBar = document.querySelector('input#searchBar')
+    const filter = searchBar.value.toUpperCase()
     const rows = document.querySelectorAll("tbody#catalog-body tr.course")
     // const tableEles = document.querySelectorAll("tbody#catalog-body tr.course td")
     
 
 
     for (let i = 0; i < rows.length; i++) {
-        let ele = rows[i].getElementsByTagName("td")[0]
-        let txtValue = ele.textContent || ele.innerText
-        console.log(txtValue)
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        const codeEle = rows[i].getElementsByTagName("td")[0]
+        const titleEle = rows[i].getElementsByTagName("td")[1]
+        const profEle = rows[i].getElementsByTagName("td")[2]
+
+        const txtValueCode = codeEle.textContent || codeEle.innerText
+        const txtValueTitle= titleEle.textContent || titleEle.innerText
+        const txtValueProf = profEle.textContent || profEle.innerText
+
+        // console.log(txtValue)
+        if (txtValueCode.toUpperCase().indexOf(filter) > -1 || txtValueTitle.toUpperCase().indexOf(filter) > -1 || txtValueProf.toUpperCase().indexOf(filter) > -1) {
             rows[i].style.display = ""
         } else {
             rows[i].style.display = "none"
@@ -618,6 +625,13 @@ main_body.addEventListener('click', event => {
         })
     }
 })
+
+searchForm.addEventListener('submit', event => {
+    event.preventDefault()
+
+    search()
+})
+
 
 
 renderAllCourses()
