@@ -19,15 +19,15 @@ function createOneComment(commentObj) {
     <div class="d-flex flex-row align-items-center commented-user">
         <h5 class="mb-3 ps-2">Kyle Andruczk</h5>
     </div>
-  
             
         <div class="d-flex bg-light py-3 px-2">
-            <div class="p-2 align-self-center" style= "align-items: stretch !important;">
+            <div class="p-2 me-2 align-self-center" style= "align-items: stretch !important;">
                 <i style="display: block; font-size: 20px;" class="bi bi-caret-up-square"></i>
+                <span style="display: block; font-size: 20px; text-align: center;">0</span>
                 <i style="display: block; font-size: 20px;" class="bi bi-caret-down-square"></i>
                 
             </div>
-            <div class="p-2 align-self-center" style="font-size:1.15rem; word-wrap: break-word; width:68rem; max-width: 1224px;">${commentObj.content}</div>
+            <div class="p-2 align-self-center col-lg" style="font-size:1.15rem; word-wrap: break-word; width: 54vmin;">${commentObj.content}</div>
             
         </div>
 
