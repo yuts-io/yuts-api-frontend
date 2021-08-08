@@ -475,27 +475,33 @@ main_body.addEventListener('click', event => {
 
 
         comments_section.innerHTML = `
-        <div>
-            <p class="subtitle is-5 mt-2"><strong><%= @post.num_comments %></strong> Comments</p>
-            <br>
-            <div class="container">
-                <%= render @post.comments %>
-            </div>
-            <br>
-            
-            <div class="mb-5">
-                <%= form_with(model: [@post, @post.comments.build]) do |f| %>
-                    <div class="input-group">
-                        <span class="input-group-text"><%= f.label :content, "Write a comment"  %></span>
-                        <%= f.text_area :content, class: "form-control" %>
+    
+            <p class="subtitle is-5 mt-2"><strong></strong> Comments</p>
+
+       
+        `
+        const new_comment = document.createElement('div')
+
+        new_comment.innerHTML = `
+
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12">
+                    <div class="form">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
                     </div>
-                    <br>
-                    <%= f.submit "Post Comment", class: "btn btn-primary" %>
-                <% end %>
+                </div>
             </div>
         </div>
-        `
 
+        <div class="mb-5">
+        
+
+                
+                <button class="btn btn-outline-success" type="submit">Submit Comment</button>
+  
+        </div>
+        `
         
 
 
@@ -619,6 +625,7 @@ main_body.addEventListener('click', event => {
 
             main_body.append(section)
             main_body.append(comments_section)
+            main_body.append(new_comment)
 
 
 
