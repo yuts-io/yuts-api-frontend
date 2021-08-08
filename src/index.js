@@ -5,6 +5,22 @@ const searchForm = document.querySelector('form#searchForm')
 
 const OFFSET = 150
 
+
+function createOneComment(commentObj) {
+    const outerDiv = document.querySelector("div#comments-container")
+
+    const newComment = document.createElement('div')
+
+    newComment.classList.add('commented-section')
+    newComment.classList.add('mt-2')
+
+    newComment.innerHTML = `
+    <div class="comment-text-sm"><span>${commentObj.content}</span></div>
+    `
+    outerDiv.append(newComment)
+    
+}
+
 function search() {
     console.log("searched")
     const searchBar = document.querySelector('input#searchBar')
@@ -339,7 +355,14 @@ function renderAllCourses() {
     //     createOneCard(articleObj)
     // })
 
-    fetch('http://127.0.0.1:3000/courses')
+    fetch('http://127.0.0.1:3000/courses', {
+        method: 'GET',
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+    })
         .then(r => r.json())
         .then(courses => {
             console.log(courses)
@@ -474,34 +497,7 @@ main_body.addEventListener('click', event => {
         comments_section.classList.add("comments")
 
 
-        comments_section.innerHTML = `
     
-            <p class="subtitle is-5 mt-2"><strong></strong> Comments</p>
-
-       
-        `
-        const new_comment = document.createElement('div')
-
-        new_comment.innerHTML = `
-
-        <div class="container">
-            <div class="row justify-content-md-center">
-                <div class="col-12">
-                    <div class="form">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mb-5">
-        
-
-                
-                <button class="btn btn-outline-success" type="submit">Submit Comment</button>
-  
-        </div>
-        `
         
 
 
@@ -513,11 +509,42 @@ main_body.addEventListener('click', event => {
 
             table_name.textContent = course.title + ` (${season_to_str(course.season_code)})`
 
+            table_name.dataset.id = id
+
             const section = document.createElement('section')
 
             console.log(course.syllabus_url)
 
             let syll_url;
+
+            comments_section.innerHTML = `
+    
+            <div class="container mt-5 mb-5" id="comments">
+                <div class="d-flex justify-content-center row">
+                    <div class="d-flex flex-column col-md-12">
+                        <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
+                           
+                            
+                            <div class="d-flex flex-column ml-3">
+                                <div class="d-flex flex-row post-title">
+                                    <h5>Comments</h5><span class="ms-2">(${course.comments.length})</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="coment-bottom bg-white p-2 px-4">
+                            <form id="comment-form">
+                                <div class="d-flex flex-row add-comment-section mt-4 mb-4"><input type="text" class="form-control mr-3" placeholder="Add comment"><button class="btn btn-primary" type="submit">Comment</button></div>
+                            </form>
+                            <div id="comments-container">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+       
+        `
 
      
 
@@ -625,7 +652,49 @@ main_body.addEventListener('click', event => {
 
             main_body.append(section)
             main_body.append(comments_section)
-            main_body.append(new_comment)
+            // main_body.append(new_comment)
+
+            course.comments.forEach(comment => {
+                createOneComment(comment)
+            })
+
+            const comment_form = document.querySelector('form#comment-form')
+
+            comment_form.addEventListener('submit', event => {
+                event.preventDefault()
+
+                const comments_div = document.querySelector('div#comments')
+
+                const student_id = null
+
+                const content = event.target[0].value
+
+                const course_id = course.id
+
+                const vote_score = 0
+
+
+                const commentObj = {
+                    student_id,
+                    content, 
+                    course_id,
+                    vote_score
+                }
+
+                comment_form.reset()
+                fetch('http://localhost:3000/comments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(commentObj)
+                })
+                    .then(r => r.json())
+                    .then(createOneComment)
+
+
+
+            })
 
 
 
@@ -645,6 +714,7 @@ renderAllCourses()
 
 createSeasonsList()
 
+// test()
 
 // scroll event listener 
 
