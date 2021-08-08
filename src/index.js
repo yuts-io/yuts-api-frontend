@@ -20,15 +20,21 @@ function createOneComment(commentObj) {
         <h5 class="mr-2">[User]</h5><span class="dot mb-1"></span>
     </div>
     <div class="container d-flex ">
-        <div class="row">
+        <div class="row justify-content-md-center">
             
-            <div class="col-md-8 ps-3 align-self-center" style="font-size:1.15rem; word-wrap: break-word; width:60rem;">
-                ${commentObj.content}
+            <div class="col-md-8" style="font-size:1.15rem; word-wrap: break-word; width:67vw; max-width: 1224px; display: inline">
+                <div class="m-0 " style="width: 40px; float: left;">
+                    <i class="bi bi-caret-up-square" style="width: 40px"></i>
+                    <i class="bi bi-caret-down-square" style="width: 40px"></i>
+                </div>
+                <div>
+                    ${commentObj.content}
+                </div>  
+
+                
             </div>
-            <div class="col-md-4">
-                <i class="bi bi-caret-up"></i>
-                <i class="bi bi-caret-down"></i>
-            </div>
+            
+
         </div>
         
         
