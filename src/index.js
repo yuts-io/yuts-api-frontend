@@ -736,13 +736,17 @@ main_body.addEventListener('click', event => {
 
             comments_section.addEventListener('click', event => {
                 if (event.target.matches('button.edit-btn')) {
-                    const box = event.target.closest('div.commented-section')
+
+                    const commented_section = event.target.closest("div.commented-section")
+
+
+                    const box = commented_section.querySelector('div.comment-box')
 
                     const id = box.dataset.id
 
                     
 
-                    const comment = document.querySelector('div.comment-content')
+                    const comment = commented_section.querySelector('div.comment-content')
 
                     const curr_comment_content = comment.textContent
 
