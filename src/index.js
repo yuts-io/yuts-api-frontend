@@ -5,6 +5,63 @@ const searchForm = document.querySelector('form#searchForm')
 
 const OFFSET = 150
 
+let has_voted = false
+
+function createVote(event) {
+    const num_votes_ele = event.target.nextElementSibling
+
+    num_votes = parseInt(num_votes_ele.textContent)
+
+    num_votes += 1
+    num_votes_ele.innerHTML = ""
+    num_votes_ele.innerText = num_votes
+    
+    event.target.classList.remove("bi-caret-up-square")
+    event.target.classList.add("bi-caret-up-square-fill")
+    event.target.style.color = "#0d6efd"
+    
+    const box = event.target.closest("div.comment-box")
+
+    const course_id = box.dataset.id 
+
+    updateVoteScore(course_id, num_votes)
+
+    const student_id = null
+
+    const upvote = true
+
+    const voteObj = {
+        course_id,
+        student_id, 
+        upvote
+    }
+
+    fetch('http://localhost:3000/votes', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(voteObj)
+    })
+
+}
+
+function updateVoteScore(comment_id, newVotes) {
+
+    
+
+    fetch(`http://localhost:3000/comments/${comment_id}/increase`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "Application/json",
+          "Accept": "Application/json"
+        },
+        body: JSON.stringify({
+          vote_score: newVotes
+        })
+      })
+}
+
 function updateNumComments(decrease=false) {
     const comments_counter = document.querySelector('h5#comments-length')
     let new_num_comments = comments_counter.textContent
@@ -34,9 +91,9 @@ function createOneComment(commentObj) {
             
         <div class="d-flex bg-light py-3 px-2 comment-box" data-id="${commentObj.id}">
             <div class="p-2 me-2 align-self-center" style= "align-items: stretch !important;">
-                <i style="display: block; font-size: 20px;" class="bi bi-caret-up-square"></i>
-                <span style="display: block; font-size: 20px; text-align: center;">0</span>
-                <i style="display: block; font-size: 20px;" class="bi bi-caret-down-square"></i>
+                <i style="display: block; font-size: 20px; color: #adb5bd;" class="upvote bi bi-caret-up-square"></i>
+                <span class="text-secondary num-votes" style="display: block; font-size: 20px; text-align: center;">0</span>
+                <i style="display: block; font-size: 20px; color: #adb5bd;" class="downvote bi bi-caret-down-square"></i>
                 
             </div>
             <div class="p-2 align-self-center col-lg comment-content" style="font-size:1.15rem; word-wrap: break-word; width: 54vmin;">${commentObj.content}</div>
@@ -829,6 +886,15 @@ main_body.addEventListener('click', event => {
                     fetch(`http://localhost:3000/comments/${id}`, {
                         method: "DELETE"
                       })
+
+                }
+                else if (event.target.matches('i.upvote')) {
+                    console.log("clicked")
+
+                    createVote(event)
+
+
+
 
                 }
             })
