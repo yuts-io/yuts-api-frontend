@@ -5,6 +5,18 @@ const searchForm = document.querySelector('form#searchForm')
 
 const OFFSET = 150
 
+function updateNumComments(decrease=false) {
+    const comments_counter = document.querySelector('h5#comments-length')
+    let new_num_comments = comments_counter.textContent
+    if (decrease) {
+        new_num_comments = parseInt(new_num_comments.charAt(new_num_comments.length - 2)) - 1
+    } else {
+        new_num_comments = parseInt(new_num_comments.charAt(new_num_comments.length - 2)) + 1
+    }
+    comments_counter.innerHTML = ""
+    comments_counter.textContent = `Comments (${new_num_comments})`
+}
+
 
 function createOneComment(commentObj) {
     const outerDiv = document.querySelector("div#comments-container")
@@ -561,7 +573,7 @@ main_body.addEventListener('click', event => {
                             
                             <div class="d-flex flex-column ml-3">
                                 <div class="d-flex flex-row post-title">
-                                    <h5>Comments (${course.comments.length})</h5>
+                                    <h5 id="comments-length">Comments (${course.comments.length})</h5>
                                 </div>
 
                             </div>
@@ -684,12 +696,16 @@ main_body.addEventListener('click', event => {
             </div>
          </div>
             `
-
+            
 
 
             main_body.append(section)
             main_body.append(comments_section)
             // main_body.append(new_comment)
+
+
+
+
 
             course.comments.forEach(comment => {
                 createOneComment(comment)
@@ -699,6 +715,10 @@ main_body.addEventListener('click', event => {
 
             comment_form.addEventListener('submit', event => {
                 event.preventDefault()
+
+                updateNumComments()
+
+
 
                 const comments_div = document.querySelector('div#comments')
 
@@ -804,6 +824,8 @@ main_body.addEventListener('click', event => {
 
                     commented_section.remove()
 
+                    updateNumComments(true)
+
                     fetch(`http://localhost:3000/comments/${id}`, {
                         method: "DELETE"
                       })
@@ -824,6 +846,20 @@ searchForm.addEventListener('submit', event => {
 
     search()
 })
+
+
+// fetch('https://cors-anywhere.herokuapp.com/https://secure.its.yale.edu/cas/login', {
+//     method: 'GET',
+//     headers: {
+//         "Access-Control-Allow-Origin": "*",
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json'
+//     },
+// })
+//     .then(r => r.json())
+//     .then(courses => {
+//         console.log(courses)
+//     })
 
 
 
