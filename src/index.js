@@ -742,7 +742,7 @@ main_body.addEventListener('click', event => {
 
                     const box = commented_section.querySelector('div.comment-box')
 
-                    const id = box.dataset.id
+                    // const id = box.dataset.id
 
                     
 
@@ -792,6 +792,21 @@ main_body.addEventListener('click', event => {
 
                     })
 
+
+                }
+                else if (event.target.matches('button.delete-btn')) {
+
+                    const commented_section = event.target.closest("div.commented-section")
+
+                    const box = commented_section.querySelector('div.comment-box')
+
+                    const id = box.dataset.id 
+
+                    commented_section.remove()
+
+                    fetch(`http://localhost:3000/comments/${id}`, {
+                        method: "DELETE"
+                      })
 
                 }
             })
