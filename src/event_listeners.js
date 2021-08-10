@@ -17,7 +17,6 @@ seasons_dropdown.addEventListener('click', event => {
         table.innerHTML = ""
 
         renderNewSeasonHome(season)
-        // loadMoreCourses(season)
     }
 })
 
