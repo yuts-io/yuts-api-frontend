@@ -176,16 +176,6 @@ main_body.addEventListener('click', event => {
                     </div>
                 </div>
                 <div class="px-0 my-0 col-md-7">
-                    <div tabindex="0" class="CourseModalOverview_filter_container__2dv71 m-auto justify-content-center row">
-                        <div class="toggle-wrapper">
-                            <div class="toggleContainer sc-hOGjNT gkxjWz CourseModalOverview_evaluations_filter__15lI6 mb-2">
-                            <div class="toggleOption" style="width: 33.3333%;">Course (1)</div>
-                            <div class="toggleOption selected" style="width: 33.3333%;">Both (1)</div>
-                            <div class="toggleOption" style="width: 33.3333%;">Prof (20)</div>
-                            <div class="toggle" style="width: 33.3333%; transform: translateX(100%);"></div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="m-auto pb-1 justify-content-center row">
                         <div class="d-flex justify-content-center px-0 mr-3 col-5"><span class="CourseModalOverview_evaluation_header__3tqxo">Season</span></div>
                         <div class="d-flex ml-0 justify-content-center px-0 col-2"><span class="CourseModalOverview_evaluation_header__3tqxo">Class</span></div>
@@ -236,7 +226,7 @@ main_body.addEventListener('click', event => {
 
                 const comments_div = document.querySelector('div#comments')
 
-                const student_id = null
+                const student_id = 1
 
                 const content = event.target[0].value
 
