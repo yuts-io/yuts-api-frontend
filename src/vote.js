@@ -325,8 +325,20 @@ function deleteVote(event, student) {
 
     // console.log(student_ids)
 
-    const vote_id_index = student_ids.indexOf(parseInt(student.id))
 
+        // add new vote to hidden ul
+
+        const vote_id_index = student_ids.indexOf(parseInt(student.id))
+
+        
+
+    const comment_id = box.dataset.id 
+
+        const list = document.querySelector(`ul#comment-${comment_id}`)
+
+        const deleted_vote = list.querySelector(`li:nth-child(${vote_id_index + 1})`)
+
+        deleted_vote.remove()
     fetch(`http://localhost:3000/votes/${vote_ids[vote_id_index]}`, {
         method: "DELETE"
       })
