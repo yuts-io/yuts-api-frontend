@@ -170,7 +170,10 @@ main_body.addEventListener('click', event => {
                     </div>
                     <div class="m-auto pt-4 pb-2 row">
                         <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Syllabus</span></div>
-                        ${syll_url}
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-7 col-6"><span class="sc-jrQzUz jUiVDr">${syll_url}</span></div>
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-2 col-2"><span class="sc-jrQzUz jUiVDr">test</span></div>
+    
+
                     </div>
                     <div class="m-auto py-2 row">
                         <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Professor</span></div>
