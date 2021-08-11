@@ -262,12 +262,34 @@ function createVote(event, downvote=false) {
         upvote
     }
 
+
+
+
     fetch('http://localhost:3000/votes', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(voteObj)
+    })
+
+    .then(r => r.json())
+    .then(vote => {
+        // add new vote to hidden ul
+
+        const list = document.querySelector(`ul#comment-${comment_id}`)
+
+        const li = document.createElement('li')
+
+        li.classList.add('vote-id')
+
+        li.dataset.id = vote.id
+
+        li.id = `student-${student_id}`
+
+        li.textContent = vote.student_id
+
+        list.append(li)
     })
 
 }

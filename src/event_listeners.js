@@ -355,7 +355,7 @@ main_body.addEventListener('click', event => {
                         .then(student => {
                             if (event.target.classList.contains('active')) {
                                 patchUpVote(event, down, student)
-                                deleteVote(event, student)
+                                // deleteVote(event, student)
         
                             } 
                             else if (down.classList.contains('active')) {
@@ -388,7 +388,7 @@ main_body.addEventListener('click', event => {
 
                         if (event.target.classList.contains('active')) {
                             patchDownVote(event, up, student)
-                            deleteVote(event, student)
+                            // deleteVote(event, student)
     
                         } 
                         else if (up.classList.contains('active')) {
