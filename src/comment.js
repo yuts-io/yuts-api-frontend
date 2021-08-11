@@ -24,7 +24,7 @@ function createOneComment(id) {
         newComment.classList.add('commented-section')
         newComment.classList.add('mt-2')
 
-        let vote_ids = commentObj.votes.map(vote => vote.id).toString()
+        // let vote_ids = commentObj.votes.map(vote => vote.id).toString()
 
         fetch(`http://127.0.0.1:3000/students/${commentObj.student_id}`)
         .then(r => r.json())
@@ -90,6 +90,23 @@ function createOneComment(id) {
                         li.textContent = vote.student_id
     
                         list.append(li)
+
+                        if (vote.student_id === student.id) {
+                            if (vote.upvote) {
+                                const up = list.previousElementSibling.previousElementSibling.querySelector('i.upvote')
+                                up.classList.remove("bi-caret-up-square")
+                                up.classList.add("bi-caret-up-square-fill")
+                                up.classList.add("active")
+                                up.style.color = "#0d6efd"
+                            }
+                            else if (vote.upvote === false) {
+                                const down = list.previousElementSibling.previousElementSibling.querySelector('i.downvote')
+                                down.classList.remove("bi-caret-down-square")
+                                down.classList.add("bi-caret-down-square-fill")
+                                down.classList.add("active")
+                                down.style.color = "#0d6efd"
+                            }
+                        }
                     })
                 })
             }
