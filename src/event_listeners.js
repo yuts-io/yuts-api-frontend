@@ -340,19 +340,25 @@ main_body.addEventListener('click', event => {
 
                     const down = event.target.nextElementSibling.nextElementSibling
 
+                    const curr_student_id = 1 // replace w/ session in future
+
+                    fetch(`http://localhost:3000/students/${curr_student_id}`)
+                        .then(r => r.json())
+                        .then(student => {
+                            if (event.target.classList.contains('active')) {
+                                patchUpVote(event, down, student)
+        
+                            } 
+                            else if (down.classList.contains('active')) {
+                                patchUpVote(event, down, student, true)
+        
+                            }
+                            else {
+                                createVote(event)
+                            }
+                        })
 
 
-                    if (event.target.classList.contains('active')) {
-                        patchUpVote(event, down)
-
-                    } 
-                    else if (down.classList.contains('active')) {
-                        patchUpVote(event, down, true)
-
-                    }
-                    else {
-                        createVote(event)
-                    }
                     
 
 
@@ -365,16 +371,24 @@ main_body.addEventListener('click', event => {
 
                     const up = event.target.previousElementSibling.previousElementSibling
 
-                    if (event.target.classList.contains('active')) {
-                        patchDownVote(event, up)
+                    const curr_student_id = 1 // replace w/ session in future
 
-                    } 
-                    else if (up.classList.contains('active')) {
-                        patchDownVote(event, up, true)
+                    fetch(`http://localhost:3000/students/${curr_student_id}`)
+                    .then(r => r.json())
+                    .then(student => {
 
-                    } else {
-                    createVote(event, true)
-                    }
+                        if (event.target.classList.contains('active')) {
+                            patchDownVote(event, up, student)
+    
+                        } 
+                        else if (up.classList.contains('active')) {
+                            patchDownVote(event, up, student, true)
+    
+                        } else {
+                            createVote(event, true)
+                        }
+                    })
+
 
 
 

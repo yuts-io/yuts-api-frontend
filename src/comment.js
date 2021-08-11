@@ -41,7 +41,7 @@ function createOneComment(id) {
                     <div class="d-flex bg-light py-3 px-2 comment-box" data-id="${commentObj.id}">
                         <div class="p-2 me-2 align-self-center" id="votes" style= "align-items: stretch !important;">
                             <i style="display: block; font-size: 20px; color: #adb5bd;" class="upvote bi bi-caret-up-square"></i>
-                            <span class="text-secondary num-votes" style="display: block; font-size: 20px; text-align: center;">0</span>
+                            <span class="text-secondary num-votes" style="display: block; font-size: 20px; text-align: center;">${commentObj.vote_score}</span>
                             <i style="display: block; font-size: 20px; color: #adb5bd;" class="downvote bi bi-caret-down-square"></i>
                             
                         </div>
@@ -74,20 +74,26 @@ function createOneComment(id) {
             outerDiv.append(newComment)
 
             const list = document.querySelector(`ul#comment-${commentObj.id}`)
-
-            commentObj.votes.forEach(vote => {
-                fetch(`http://127.0.0.1:3000/comments/${id}`)
-                .then(r => r.json())
-                .then(vote => {
-                    const li = document.createElement('li')
-
-                    li.classList.add('vote-id')
-
-                    li.dataset.id = vote.id
-
-                    list.append(li)
+            if (commentObj.votes != null) {
+                commentObj.votes.forEach(vote => {
+                    fetch(`http://127.0.0.1:3000/votes/${vote.id}`)
+                    .then(r => r.json())
+                    .then(vote => {
+                        const li = document.createElement('li')
+    
+                        li.classList.add('vote-id')
+    
+                        li.dataset.id = vote.id
+    
+                        li.id = `student-${student.id}`
+    
+                        li.textContent = vote.student_id
+    
+                        list.append(li)
+                    })
                 })
-            })
+            }
+
             
         })
     
