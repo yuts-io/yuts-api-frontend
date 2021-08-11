@@ -210,10 +210,18 @@ main_body.addEventListener('click', event => {
 
 
 
+            
+                course.comments.forEach(comment => {
 
-            course.comments.forEach(comment => {
-                createOneComment(comment.id)
-            })
+                    fetch(`http://127.0.0.1:3000/comments/${comment.id}`)
+                    .then(r => r.json())
+                    .then(comment => {
+                    createOneComment(comment)
+                    })
+
+
+
+                })
 
             const comment_form = document.querySelector('form#comment-form')
 
@@ -347,6 +355,7 @@ main_body.addEventListener('click', event => {
                         .then(student => {
                             if (event.target.classList.contains('active')) {
                                 patchUpVote(event, down, student)
+                                deleteVote(event, student)
         
                             } 
                             else if (down.classList.contains('active')) {
@@ -379,10 +388,13 @@ main_body.addEventListener('click', event => {
 
                         if (event.target.classList.contains('active')) {
                             patchDownVote(event, up, student)
+                            deleteVote(event, student)
     
                         } 
                         else if (up.classList.contains('active')) {
                             patchDownVote(event, up, student, true)
+
+                            
     
                         } else {
                             createVote(event, true)

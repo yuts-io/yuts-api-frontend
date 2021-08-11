@@ -11,12 +11,10 @@ function updateNumComments(decrease=false) {
 }
 
 
-function createOneComment(id) {
+function createOneComment(commentObj) {
 
 
-    fetch(`http://127.0.0.1:3000/comments/${id}`)
-    .then(r => r.json())
-    .then(commentObj => {
+
         const outerDiv = document.querySelector("div#comments-container")
 
         const newComment = document.createElement('div')
@@ -115,7 +113,7 @@ function createOneComment(id) {
         })
     
         
-    })
+    
 
 
 
