@@ -11,10 +11,10 @@ function updateNumComments(decrease=false) {
 }
 
 
-function createOneComment(commentObj) {
+function createOneComment(id) {
 
 
-    fetch(`http://127.0.0.1:3000/comments/${commentObj.id}`)
+    fetch(`http://127.0.0.1:3000/comments/${id}`)
     .then(r => r.json())
     .then(commentObj => {
         const outerDiv = document.querySelector("div#comments-container")
@@ -29,23 +29,25 @@ function createOneComment(commentObj) {
         fetch(`http://127.0.0.1:3000/students/${commentObj.student_id}`)
         .then(r => r.json())
         .then(student => {
-            console.log(student.first_name + " " + student.last_name)
+        
 
             newComment.innerHTML = 
             `
                 <hr>
-                <div class="d-flex flex-row align-items-center commented-user">
+                <div class="d-flex flex-row align-items-center commented-user" data-id="${student.id}">
                     <h5 class="mb-3 ps-2">${student.first_name + " " + student.last_name}</h5>
                 </div>
                         
                     <div class="d-flex bg-light py-3 px-2 comment-box" data-id="${commentObj.id}">
-                        <div class="p-2 me-2 align-self-center" id="votes" data-id="${vote_ids}" style= "align-items: stretch !important;">
+                        <div class="p-2 me-2 align-self-center" id="votes" style= "align-items: stretch !important;">
                             <i style="display: block; font-size: 20px; color: #adb5bd;" class="upvote bi bi-caret-up-square"></i>
                             <span class="text-secondary num-votes" style="display: block; font-size: 20px; text-align: center;">0</span>
                             <i style="display: block; font-size: 20px; color: #adb5bd;" class="downvote bi bi-caret-down-square"></i>
                             
                         </div>
                         <div class="p-2 align-self-center col-lg comment-content" style="font-size:1.15rem; word-wrap: break-word; width: 54vmin;">${commentObj.content}</div>
+                        <ul hidden class="votes-list" id="comment-${commentObj.id}">
+                        </ul> 
                         
                     </div>
             
@@ -70,6 +72,22 @@ function createOneComment(commentObj) {
             `
                 
             outerDiv.append(newComment)
+
+            const list = document.querySelector(`ul#comment-${commentObj.id}`)
+
+            commentObj.votes.forEach(vote => {
+                fetch(`http://127.0.0.1:3000/comments/${id}`)
+                .then(r => r.json())
+                .then(vote => {
+                    const li = document.createElement('li')
+
+                    li.classList.add('vote-id')
+
+                    li.dataset.id = vote.id
+
+                    list.append(li)
+                })
+            })
             
         })
     

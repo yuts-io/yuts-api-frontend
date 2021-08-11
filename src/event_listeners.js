@@ -212,7 +212,7 @@ main_body.addEventListener('click', event => {
 
 
             course.comments.forEach(comment => {
-                createOneComment(comment)
+                createOneComment(comment.id)
             })
 
             const comment_form = document.querySelector('form#comment-form')

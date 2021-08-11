@@ -65,7 +65,7 @@ function patchUpVote(event, downvoteEle, decrease=false) {
         upvote
     }
 
-    fetch(`http://localhost:3000/votes/${event.target.id}`, {
+    fetch(`http://localhost:3000/votes/${event.target.dataset.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "Application/json",
@@ -82,7 +82,7 @@ function patchDownVote(event, upvoteEle, increase=false) {
 
     let num_votes = parseInt(num_votes_ele.textContent)
 
-   increase ? num_votes += 2 : num_votes += 1
+   increase ? num_votes -= 2 : num_votes += 1
 
     num_votes_ele.innerHTML = ""
     num_votes_ele.innerText = num_votes
@@ -95,13 +95,13 @@ function patchDownVote(event, upvoteEle, increase=false) {
     if (increase) {
 
 
-        upvoteEle.classList.remove("bi-caret-down-square-fill")
-        upvoteEle.classList.add("bi-caret-down-square")
+        upvoteEle.classList.remove("bi-caret-up-square-fill")
+        upvoteEle.classList.add("bi-caret-up-square")
         upvoteEle.classList.remove("active")
         upvoteEle.style.color = "#adb5bd"
 
-        event.target.classList.remove("bi-caret-up-square")
-        event.target.classList.add("bi-caret-up-square-fill")
+        event.target.classList.remove("bi-caret-down-square")
+        event.target.classList.add("bi-caret-down-square-fill")
         event.target.classList.add("active")
         event.target.style.color = "#0d6efd" 
         
@@ -128,7 +128,7 @@ function patchDownVote(event, upvoteEle, increase=false) {
         upvote
     }
 
-    fetch(`http://localhost:3000/votes/${event.target.id}`, {
+    fetch(`http://localhost:3000/votes/${event.target.dataset.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "Application/json",
@@ -178,7 +178,7 @@ function createVote(event, downvote=false) {
 
     
 
-    const student_id = null
+    const student_id = 1
 
     let upvote;
 
