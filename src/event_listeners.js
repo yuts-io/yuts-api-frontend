@@ -148,6 +148,8 @@ main_body.addEventListener('click', event => {
             gutsArr = cleanStats(course, "gut_index")
 
             profsArr = cleanStats(course, "average_professor")
+
+            workArr = cleanStats(course, "average_workload")
             
 
 
@@ -241,6 +243,27 @@ main_body.addEventListener('click', event => {
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
                             <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${profsArr[4]}</div>
+                        </div>
+                    </div>
+                    <div class="m-auto py-1 justify-content-center row">
+                        <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
+                            <strong>Workload Rating</strong>
+                            <div class="CourseModalOverview_details__3Yi_F mx-auto CourseModalOverview_shown__po4mh">Section 1</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma hTudOk CourseModalOverview_rating_cell__3jrJ6 undefined">${workArr[0]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma dmsDBh CourseModalOverview_rating_cell__3jrJ6">${workArr[1]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-2">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${workArr[2]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${workArr[3]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${workArr[4]}</div>
                         </div>
                     </div>
 
