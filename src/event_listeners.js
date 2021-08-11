@@ -197,7 +197,13 @@ main_body.addEventListener('click', event => {
                         <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">${creds}</div>
                     </div>
                 </div>
-                <div class="px-0 my-0 col-md-7">
+                <div class="px-0 my-0 col-md-7 justify-content-center">
+                    <div class="m-auto py-1 justify-content-end row">
+                        <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 me-3 text-center col-10" style="flex: 0 0 auto;">
+                            <h5>${season_to_str(course.season_code) + " Stats"}</h5>
+                            <hr>
+                        </div>
+                    </div>
                     <div class="m-auto pb-1 justify-content-center row">
                         <div class="d-flex justify-content-center px-0 mr-3 col-5"><span class="CourseModalOverview_evaluation_header__3tqxo">Season</span></div>
                         <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Mean</span></div>
@@ -269,6 +275,23 @@ main_body.addEventListener('click', event => {
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
                             <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${workArr[4]}</div>
                         </div>
+                    </div>
+                    <div class="m-auto py-1 justify-content-end row">
+                        <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 me-3 text-center col-10" style="flex: 0 0 auto;">
+                            <h5>${course.subject + " subject stats"}</h5>
+                            <hr>
+                        </div>
+
+                        
+                    </div>
+                    <div class="m-auto pb-1 justify-content-center row">
+                        <div class="d-flex justify-content-center px-0 mr-3 col-5"><span class="CourseModalOverview_evaluation_header__3tqxo">Season</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Mean</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Median</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-2"><span class="CourseModalOverview_evaluation_header__3tqxo">Standard Deviation</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Mode</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Range</span></div>
+
                     </div>
                     <div class="m-auto py-1 justify-content-center row">
                         <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
