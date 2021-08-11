@@ -145,14 +145,18 @@ main_body.addEventListener('click', event => {
 
 
 
-            gutsArr = cleanStats(course, "gut_index")
+            const gutsArr = cleanStats(course, "gut_index")
 
-            profsArr = cleanStats(course, "average_professor")
+            const profsArr = cleanStats(course, "average_professor")
 
-            workArr = cleanStats(course, "average_workload")
+            const workArr = cleanStats(course, "average_workload")
             
 
+            const gutsArrSub = cleanStats(course, "gut_index_subject")
 
+            const profsArrSub = cleanStats(course, "average_professor_subject")
+
+            const workArrSub = cleanStats(course, "average_workload_subject")
     
 
             section.innerHTML = 
@@ -264,6 +268,69 @@ main_body.addEventListener('click', event => {
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
                             <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${workArr[4]}</div>
+                        </div>
+                    </div>
+                    <div class="m-auto py-1 justify-content-center row">
+                        <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
+                            <strong>Subject Gut Index</strong>
+                            <div class="CourseModalOverview_details__3Yi_F mx-auto CourseModalOverview_shown__po4mh">Section 1</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma hTudOk CourseModalOverview_rating_cell__3jrJ6 undefined">${gutsArrSub[0]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma dmsDBh CourseModalOverview_rating_cell__3jrJ6">${gutsArrSub[1]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-2">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${gutsArrSub[2]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${gutsArrSub[3]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${gutsArrSub[4]}</div>
+                        </div>
+                    </div>
+                    <div class="m-auto py-1 justify-content-center row">
+                        <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
+                            <strong>Subject Prof Rating</strong>
+                            <div class="CourseModalOverview_details__3Yi_F mx-auto CourseModalOverview_shown__po4mh">Section 1</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma hTudOk CourseModalOverview_rating_cell__3jrJ6 undefined">${profsArrSub[0]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma dmsDBh CourseModalOverview_rating_cell__3jrJ6">${profsArrSub[1]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-2">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${profsArrSub[2]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${profsArrSub[3]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${profsArrSub[4]}</div>
+                        </div>
+                    </div>
+                    <div class="m-auto py-1 justify-content-center row">
+                        <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
+                            <strong>Subject Workload Rating</strong>
+                            <div class="CourseModalOverview_details__3Yi_F mx-auto CourseModalOverview_shown__po4mh">Section 1</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma hTudOk CourseModalOverview_rating_cell__3jrJ6 undefined">${workArrSub[0]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma dmsDBh CourseModalOverview_rating_cell__3jrJ6">${workArrSub[1]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-2">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${workArrSub[2]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${workArrSub[3]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${workArrSub[4]}</div>
                         </div>
                     </div>
 

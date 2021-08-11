@@ -77,6 +77,10 @@ function cleanStats(course, subject) {
 
     let range = checkIfBlank(course, subject + "_range")
 
+    if (range != "N/A") {
+        range = (course[subject + "_range"].toFixed(2))
+    }
+
     statsArr.push(range)
 
     return statsArr
