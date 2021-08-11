@@ -31,7 +31,8 @@ main_body.addEventListener('click', event => {
         const btn = document.createElement('a')
         btn.classList.add('btn-primary')
         btn.classList.add('btn')
-        btn.classList.add('mb-3')
+        btn.classList.add('btn-sm')
+
         btn.onclick = () => { 
             main_body.innerHTML = ""
             refreshTable()
@@ -47,7 +48,7 @@ main_body.addEventListener('click', event => {
          }
         btn.innerHTML = "Back to Catalog"
 
-        main_body.append(btn)
+        // main_body.append(btn)
 
         const table_name = document.querySelector('main div h1#table-title')
 
@@ -169,35 +170,49 @@ main_body.addEventListener('click', event => {
                         <div class="LinesEllipsis  " style="white-space: pre-wrap;">${course.description}<wbr></div>
                     </div>
                     <div class="m-auto pt-4 pb-2 row">
-                        <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Syllabus</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-7 col-6"><span class="sc-jrQzUz jUiVDr">${syll_url}</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-2 col-2"><span class="sc-jrQzUz jUiVDr">test</span></div>
+                        <div class="px-0 col-sm-2 col-2"><span class="CourseModalOverview_lable_bubble__20zUT">Syllabus</span></div>
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4"><span class="sc-jrQzUz jUiVDr">${syll_url}</span></div>
+                        <div class="px-0 col-sm-3 col-3"><span class="CourseModalOverview_lable_bubble__20zUT">Location</span></div>
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-3 col-3">${location}</div>
+
     
 
                     </div>
                     <div class="m-auto py-2 row">
-                        <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Professor</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8"><span class="sc-jrQzUz jUiVDr">${prof}</span></div>
+                        <div class="px-0 col-sm-2 col-2"><span class="CourseModalOverview_lable_bubble__20zUT">Professor</span></div>
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4"><span class="sc-jrQzUz jUiVDr">${prof}</span></div>
+                        <div class="px-0 col-sm-2 col-2"><span class="CourseModalOverview_lable_bubble__20zUT">Meets</span></div>
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4">${meets}</div>
                     </div>
                     <div class="m-auto py-2 row">
-                        <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Meets</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">${meets}</div>
+                        <div class="px-0 col-sm-2 col-2"><span class="CourseModalOverview_lable_bubble__20zUT">Section</span></div>
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4">${section_course}</div>
+                        <div class="px-0 col-sm-2 col-2"><span class="CourseModalOverview_lable_bubble__20zUT">Enrollment</span></div>
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4">${enrollment}</div>
                     </div>
                     <div class="m-auto py-2 row">
-                        <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Location</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">${location}</div>
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-1 col-1"></div>
+
+                        <div class="CourseModalOverview_metadata__2fCzj align-middle col-sm-4 col-4" id="back-btn-container"></div>
+
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-1 col-1"></div>
+
+                        <div class="px-0 col-sm-2 col-2"><span class="align-middle">Credits</span></div>
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4"><span class="align-middle">${creds}</span></div>
+        
                     </div>
                     <div class="m-auto py-2 row">
-                        <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Section</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">${section_course}</div>
+                        
                     </div>
                     <div class="m-auto py-2 row">
-                        <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Enrollment</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">${enrollment}</div>
-                    </div>
-                    <div class="m-auto py-2 row">
-                        <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Credits</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">${creds}</div>
+                        <div class="card">
+                            <h5 >Featured</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                        </div>
                     </div>
                 </div>
                 <div class="px-0 my-0 col-md-7 justify-content-center">
@@ -365,27 +380,28 @@ main_body.addEventListener('click', event => {
             </div>
             `
             
-
+            
 
             main_body.append(section)
             main_body.append(comments_section)
             // main_body.append(new_comment)
 
+            const btn_container = document.querySelector('div#back-btn-container')
+
+            btn_container.append(btn)
+
 
 
 
             
-                course.comments.forEach(comment => {
+            course.comments.forEach(comment => {
 
-                    fetch(`http://127.0.0.1:3000/comments/${comment.id}`)
-                    .then(r => r.json())
-                    .then(comment => {
-                    createOneComment(comment)
-                    })
-
-
-
+                fetch(`http://127.0.0.1:3000/comments/${comment.id}`)
+                .then(r => r.json())
+                .then(comment => {
+                createOneComment(comment)
                 })
+            })
 
             const comment_form = document.querySelector('form#comment-form')
 
