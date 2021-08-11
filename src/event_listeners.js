@@ -130,9 +130,25 @@ main_body.addEventListener('click', event => {
     
             }
 
+            const prof = checkIfBlank(course, "professor_names", true)
+
             const meets = checkIfBlank(course, "times_summary", true)
 
             const location = checkIfBlank(course, "locations_summary", true)
+
+            const creds = checkIfBlank(course, "credits")
+
+            const enrollment = checkIfBlank(course, "last_enrollment")
+
+            const section_course = checkIfBlank(course, "section", true)
+
+
+
+
+            gutsArr = cleanStats(course, "gut_index")
+
+            profsArr = cleanStats(course, "average_professor")
+            
 
 
     
@@ -152,7 +168,7 @@ main_body.addEventListener('click', event => {
                     </div>
                     <div class="m-auto py-2 row">
                         <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Professor</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8"><span class="sc-jrQzUz jUiVDr">${course.professor_names}</span></div>
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8"><span class="sc-jrQzUz jUiVDr">${prof}</span></div>
                     </div>
                     <div class="m-auto py-2 row">
                         <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Meets</span></div>
@@ -164,40 +180,72 @@ main_body.addEventListener('click', event => {
                     </div>
                     <div class="m-auto py-2 row">
                         <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Section</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">1</div>
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">${section_course}</div>
                     </div>
                     <div class="m-auto py-2 row">
                         <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Enrollment</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">75</div>
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">${enrollment}</div>
                     </div>
                     <div class="m-auto py-2 row">
                         <div class="px-0 col-sm-3 col-4"><span class="CourseModalOverview_lable_bubble__20zUT">Credits</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">1</div>
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">${creds}</div>
                     </div>
                 </div>
                 <div class="px-0 my-0 col-md-7">
                     <div class="m-auto pb-1 justify-content-center row">
                         <div class="d-flex justify-content-center px-0 mr-3 col-5"><span class="CourseModalOverview_evaluation_header__3tqxo">Season</span></div>
-                        <div class="d-flex ml-0 justify-content-center px-0 col-2"><span class="CourseModalOverview_evaluation_header__3tqxo">Class</span></div>
-                        <div class="d-flex ml-0 justify-content-center px-0 col-2"><span class="CourseModalOverview_evaluation_header__3tqxo">Prof</span></div>
-                        <div class="d-flex ml-0 justify-content-center px-0 col-2"><span class="CourseModalOverview_evaluation_header__3tqxo">Work</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Mean</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Median</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-2"><span class="CourseModalOverview_evaluation_header__3tqxo">Standard Deviation</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Mode</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Range</span></div>
+
                     </div>
                     <div class="m-auto py-1 justify-content-center row">
                         <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
-                            <strong>Fall 2019</strong>
+                            <strong>Gut Index</strong>
                             <div class="CourseModalOverview_details__3Yi_F mx-auto CourseModalOverview_shown__po4mh">Section 1</div>
                         </div>
-                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-2">
-                            <div class="sc-pVTma hTudOk CourseModalOverview_rating_cell__3jrJ6 undefined">3.9</div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma hTudOk CourseModalOverview_rating_cell__3jrJ6 undefined">${gutsArr[0]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma dmsDBh CourseModalOverview_rating_cell__3jrJ6">${gutsArr[1]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-2">
-                            <div class="sc-pVTma dmsDBh CourseModalOverview_rating_cell__3jrJ6">4.0</div>
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${gutsArr[2]}</div>
                         </div>
-                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-2">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">3.3</div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${gutsArr[3]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${gutsArr[4]}</div>
                         </div>
                     </div>
+                    <div class="m-auto py-1 justify-content-center row">
+                        <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
+                            <strong>Professor Rating</strong>
+                            <div class="CourseModalOverview_details__3Yi_F mx-auto CourseModalOverview_shown__po4mh">Section 1</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma hTudOk CourseModalOverview_rating_cell__3jrJ6 undefined">${profsArr[0]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma dmsDBh CourseModalOverview_rating_cell__3jrJ6">${profsArr[1]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-2">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${profsArr[2]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${profsArr[3]}</div>
+                        </div>
+                        <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
+                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${profsArr[4]}</div>
+                        </div>
+                    </div>
+
                 </div>
+                
             </div>
             `
             

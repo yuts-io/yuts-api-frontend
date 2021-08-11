@@ -37,6 +37,51 @@ function checkIfBlank(course, course_attr, tba=false) {
     }
 }
 
+function cleanStats(course, subject) {
+
+    let statsArr = []
+
+    let mean = checkIfBlank(course, subject + "_mean")
+
+    if (mean != "N/A") {
+        mean = (course[subject + "_mean"].toFixed(2))
+    }
+
+    statsArr.push(mean)
+
+    let median = checkIfBlank(course, subject + "_median")
+
+    if (median != "N/A") {
+        median = (course[subject + "_median"].toFixed(2))
+    }
+
+    statsArr.push(median)
+
+
+    let standard_deviation = checkIfBlank(course, subject + "_standard_deviation")
+
+    if (standard_deviation != "N/A") {
+        standard_deviation = (course[subject + "_standard_deviation"].toFixed(2))
+    }
+
+    statsArr.push(standard_deviation)
+
+    let mode = checkIfBlank(course, subject + "_mode")
+
+    if (mode != "N/A") {
+        mode = (course[subject + "_mode"].toFixed(2))
+    }
+
+    statsArr.push(mode)
+
+
+    let range = checkIfBlank(course, subject + "_range")
+
+    statsArr.push(range)
+
+    return statsArr
+}
+
 
 searchForm.addEventListener('submit', event => {
     event.preventDefault()

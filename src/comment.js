@@ -56,9 +56,10 @@ function createOneComment(commentObj) {
             <div class="container">
                 <div class="row">
                     <div class= "col">
-                        <span class="mb-1 ms-2">5 hours ago</span>
-                        <button type="button" class="btn btn-primary btn-sm edit-btn">Edit</button>
-                        <button type="button" class="btn btn-secondary btn-sm delete-btn">Delete</button>
+                        
+                        <span class="mb-1 ms-2 me-1">${commentObj.created_at}<! –– add comment time later ––></span> 
+                        <button type="button" class="btn btn-primary btn-sm edit-btn me-1">Edit</button>
+                        <button type="button" class="btn btn-secondary btn-sm delete-btn me-1">Delete</button>
                     </div>
                 </div>
                     
