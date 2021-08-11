@@ -28,10 +28,11 @@ main_body.addEventListener('click', event => {
         main_body.innerHTML = ""
 
 
-        const btn = document.createElement('a')
+        const btn = document.createElement('button')
         btn.classList.add('btn-primary')
         btn.classList.add('btn')
-        btn.classList.add('btn-sm')
+        // btn.classList.add('btn-sm')
+        btn.type = "button"
 
         btn.onclick = () => { 
             main_body.innerHTML = ""
@@ -169,6 +170,36 @@ main_body.addEventListener('click', event => {
                     <div class="mx-auto row">
                         <div class="LinesEllipsis  " style="white-space: pre-wrap;">${course.description}<wbr></div>
                     </div>
+                    <div class="m-auto py-2 mt-3 row">
+                        <div class="card">
+                            
+                            <div class="card-body" id="back-btn-container">
+                                <h5 class="card-title">${course.course_code} Stats</h5>
+                                <hr>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                        Column
+                                        </div>
+                                        <div class="col">
+                                        Column
+                                        </div>
+                                        <div class="col">
+                                        Column
+                                        </div>
+                                        <div class="col">
+                                        Column
+                                        </div>
+                                        <div class="col">
+                                        Column
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                
+                            </div>
+                        </div>
+                    </div>
                     <div class="m-auto pt-4 pb-2 row">
                         <div class="px-0 col-sm-2 col-2"><span class="CourseModalOverview_lable_bubble__20zUT">Syllabus</span></div>
                         <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4"><span class="sc-jrQzUz jUiVDr">${syll_url}</span></div>
@@ -185,35 +216,16 @@ main_body.addEventListener('click', event => {
                         <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4">${meets}</div>
                     </div>
                     <div class="m-auto py-2 row">
-                        <div class="px-0 col-sm-2 col-2"><span class="CourseModalOverview_lable_bubble__20zUT">Section</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4">${section_course}</div>
+                        <div class="px-0 col-sm-2 col-2"><span class="align-middle">Credits</span></div>
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4"><span class="align-middle">${creds}</span></div>
                         <div class="px-0 col-sm-2 col-2"><span class="CourseModalOverview_lable_bubble__20zUT">Enrollment</span></div>
                         <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4">${enrollment}</div>
                     </div>
-                    <div class="m-auto py-2 row">
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-1 col-1"></div>
-
-                        <div class="CourseModalOverview_metadata__2fCzj align-middle col-sm-4 col-4" id="back-btn-container"></div>
-
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-1 col-1"></div>
-
-                        <div class="px-0 col-sm-2 col-2"><span class="align-middle">Credits</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4"><span class="align-middle">${creds}</span></div>
-        
-                    </div>
+                
                     <div class="m-auto py-2 row">
                         
                     </div>
-                    <div class="m-auto py-2 row">
-                        <div class="card">
-                            <h5 >Featured</h5>
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="px-0 my-0 col-md-7 justify-content-center">
                     <div class="m-auto py-1 justify-content-end row">
