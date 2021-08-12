@@ -1,72 +1,79 @@
+// ADD TABLE BACK TO MAIN BODY
 function refreshTable() {
     main_body.innerHTML = `
-<table class="table table-striped table-sticky table-hover">
-   <thead>
-      <tr>
-         <th scope="col">Code</th>
-         <th scope="col">Title</th>
-         <th scope="col">Prof</th>
-         <th scope="col">Gut Index</th>
-         <th scope="col">Guttiness</th>
-         <th scope="col">Gut Rank</th>
-         <th scope="col">Gut Subject Rank</th>
-         <th scope="col">Overall Rating</th>
-         <th scope="col">Prof Rating</th>
-         <th scope="col">Grading</th>
-         <th scope="col">Prof Rank</th>
-         <th scope="col">Prof Subject Rank</th>
-         <th scope="col">Work Rating</th>
-         <th scope="col">Workload</th>
-         <th scope="col">Work Rank</th>
-         <th scope="col">Work Subject Rank</th>
-         <th scope="col">#</th>
-         <th scope="col">Skills/Areas</th>
-      </tr>
-   </thead>
-   <tbody id="catalog-body">
-      <!-- Dynamic table content here -->
-   </tbody>
-</table>
+    <table class="table table-striped table-sticky table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Title</th>
+                <th scope="col">Prof</th>
+                <th scope="col">Gut Index</th>
+                <th scope="col">Guttiness</th>
+                <th scope="col">Gut Rank</th>
+                <th scope="col">Gut Subject Rank</th>
+                <th scope="col">Overall Rating</th>
+                <th scope="col">Prof Rating</th>
+                <th scope="col">Grading</th>
+                <th scope="col">Prof Rank</th>
+                <th scope="col">Prof Subject Rank</th>
+                <th scope="col">Work Rating</th>
+                <th scope="col">Workload</th>
+                <th scope="col">Work Rank</th>
+                <th scope="col">Work Subject Rank</th>
+                <th scope="col">#</th>
+                <th scope="col">Skills/Areas</th>
+            </tr>
+        </thead>
+        <tbody id="catalog-body">
+            <!-- Dynamic table content here -->
+        </tbody>
+    </table>
     `
 }
 
+// CREATE A TABLE ELEMENT
+// HANDLES RANK STYLING, ESTIMATION (ADDING ~ TO ENROLLMENT), AND INTEGER VS FLOAT
 function createTableEle(obj, category, outerDiv, rank=false, reg_int=false, estimated=false) {
     const td = document.createElement('td')
     if (obj[category] != null) {
-        if (!rank) {
-                if (!reg_int) {
-                    td.innerHTML = `<td>${obj[category].toFixed(2)}</td>`
-                }
-                else if (!estimated) {
-                    td.innerHTML = `<td>${obj[category]}</td>`
-                }
-                else {
-                    td.innerHTML = `<td>~${obj[category]}</td>`
-
-                }
+        if (!rank) {    
+            if (!reg_int) {
+                // handle float val
+                td.innerHTML = `<td>${obj[category].toFixed(2)}</td>`
+            }
+            else if (!estimated) {
+                // handle non estimation
+                td.innerHTML = `<td>${obj[category]}</td>`
+            }
+            else {
+                // handle estimation
+                td.innerHTML = `<td>~${obj[category]}</td>`
+            }
         }
         else {
+            // handle percentile
             td.innerHTML = `<td>${ordinal(obj[category])}</td>`
         }
-
-        
     }
     else {
-        td.innerHTML = `<td>N/A</td>`
+        // handle null val
+        td.innerHTML = `<td>N/A</td>` 
     }
 
     outerDiv.append(td)
 }
 
+// CLASSIFY A TABLE ELE
+// creates the guttiness, grading, and workload vals
 function createTableEleClassed(classification, outerDiv) {
 
     const td = document.createElement('td')
     td.innerHTML = `<td>${classification}</td>`
 
     outerDiv.append(td)
-
 }
 
+// CLASSIFICATION OF GUTS, PROFS, AND WORKLOAD
 function classifyGut(course) {
     if (course["gut_percentile"] === null || course["gut_percentile_subject"] === null) {
         return "N/A"
@@ -143,17 +150,19 @@ function classifyWork(course) {
     }
 }
 
+
+// CHANGE RANK NUMS TO ORDINAL
 function ordinal(n) {
     var s = ["th", "st", "nd", "rd"];
     var v = n%100;
     return n + (s[(v-20)%10] || s[v] || s[0]);
 }
 
+// CONVERT SEASON CODE TO A STRING
 function season_to_str(season) {
     const season_str = '' + season
 
     const year = season_str.substring(0, 4)
-
 
     const season_code = season_str.substring(4, 6)
     let semester;
