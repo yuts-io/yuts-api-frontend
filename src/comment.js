@@ -1,3 +1,4 @@
+// HANDLE WHEN COMMENT IS ADDED OR DELETED, CHANGE NUM COMMENTS LISTED
 function updateNumComments(decrease=false) {
     const comments_counter = document.querySelector('h5#comments-length')
     let new_num_comments = comments_counter.textContent
@@ -10,11 +11,8 @@ function updateNumComments(decrease=false) {
     comments_counter.textContent = `Comments (${new_num_comments})`
 }
 
-
+// HANDLE NEW COMMENT CREATION
 function createOneComment(commentObj) {
-
-
-
     const outerDiv = document.querySelector("div#comments-container")
 
     const newComment = document.createElement('div')
@@ -22,11 +20,10 @@ function createOneComment(commentObj) {
     newComment.classList.add('commented-section')
     newComment.classList.add('mt-2')
 
+    // FETCH STUDENT TO DYNAMICALLY ADD NAME ON COMMENT
     fetch(`http://127.0.0.1:3000/students/${commentObj.student_id}`)
     .then(r => r.json())
     .then(student => {
-    
-
         newComment.innerHTML = 
         `
             <hr>
@@ -46,10 +43,6 @@ function createOneComment(commentObj) {
                     </ul> 
                     
                 </div>
-        
-                
-                
-        
             <br>
             <div class="container">
                 <div class="row">
@@ -60,17 +53,15 @@ function createOneComment(commentObj) {
                         <button type="button" class="btn btn-secondary btn-sm delete-btn me-1">Delete</button>
                     </div>
                 </div>
-                    
-        
             </div>
-        
-            
-        
         `
             
         outerDiv.append(newComment)
 
         const list = document.querySelector(`ul#comment-${commentObj.id}`)
+
+        // ADD VOTES TO COMMENTS
+        // FETCH VOTES FROM API
         if (commentObj.votes != null) {
             commentObj.votes.forEach(vote => {
                 fetch(`http://127.0.0.1:3000/votes/${vote.id}`)
@@ -87,7 +78,8 @@ function createOneComment(commentObj) {
                     li.textContent = vote.student_id
 
                     list.append(li)
-
+                    // find vote id, match it to student
+                    // change vote style accordingly
                     if (vote.student_id === student.id) {
                         if (vote.upvote) {
                             const up = list.previousElementSibling.previousElementSibling.querySelector('i.upvote')
@@ -106,16 +98,7 @@ function createOneComment(commentObj) {
                     }
                 })
             })
-        }
-
-        
-    })
-    
-        
-    
-
-
-
-    
+        }  
+    })    
 }
 

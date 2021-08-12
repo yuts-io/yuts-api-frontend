@@ -36,7 +36,5 @@ function createOneSeasonEle(season) {
 
     li.textContent = full_semester
 
-
     seasons_dropdown.append(li)
-
 }
