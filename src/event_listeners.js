@@ -589,11 +589,13 @@ main_body.addEventListener('click', event => {
                     fetch(`http://localhost:3000/students/${curr_student_id}`)
                         .then(r => r.json())
                         .then(student => {
+                            // upvote is already cast, unclick it
                             if (event.target.classList.contains('active')) {
                                 patchUpVote(event, down, student)
                                 deleteVote(event, student)
         
                             } 
+                            // downvote is cast, change to upvote
                             else if (down.classList.contains('active')) {
                                 patchUpVote(event, down, student, true)
         
