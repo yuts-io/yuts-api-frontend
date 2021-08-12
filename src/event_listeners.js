@@ -35,29 +35,21 @@ main_body.addEventListener('click', event => {
         
         // clear table
         main_body.innerHTML = ""
-
-
         const table_name = document.querySelector('main div h1#table-title')
-
-
-
 
         // FETCH COURSE FROM API
 
         clicked_course = getOneCourse(id)
         clicked_course.then(course => {
 
+            // change table name to course title
             table_name.textContent = course.title + ` (${season_to_str(course.season_code)})`
-
             table_name.dataset.id = id
 
-            const section = document.createElement('section')
+            // create new show section
+            const show_section = document.createElement('section')
 
-            console.log(course.syllabus_url)
-
-            
-
-
+            // handle syllabus url html
             let syll_url;
 
             if (course.syllabus_url === null) {
@@ -82,16 +74,13 @@ main_body.addEventListener('click', event => {
     
             }
 
+            // CLEAN ALL COURSE DATA
+
             const prof = checkIfBlank(course, "professor_names", true)
-
             const meets = checkIfBlank(course, "times_summary", true)
-
             const location = checkIfBlank(course, "locations_summary", true)
-
             const creds = checkIfBlank(course, "credits")
-
             const enrollment = checkIfBlank(course, "last_enrollment")
-
             const section_course = checkIfBlank(course, "section", true)
 
             const gut_index = cleanOneStat(course, "gut_index")
@@ -100,38 +89,23 @@ main_body.addEventListener('click', event => {
             const average_workload = cleanOneStat(course, "average_workload")
 
             const gut_rank = cleanOneStat(course, "gut_percentile", true)
-
             const gut_sub_rank = cleanOneStat(course, "gut_percentile_subject", true)
-
             const professor_rank = cleanOneStat(course, "professor_percentile", true)
-
             const professor_sub_rank = cleanOneStat(course, "professor_percentile_subject", true)
-
             const work_rank = cleanOneStat(course, "workload_percentile", true)
-
             const work_sub_rank = cleanOneStat(course, "workload_percentile_subject", true)
 
-
-
-       
-
-
             const gutsArr = cleanStats(course, "gut_index")
-
             const profsArr = cleanStats(course, "average_professor")
-
             const workArr = cleanStats(course, "average_workload")
             
-
             const gutsArrSub = cleanStats(course, "gut_index_subject")
-
             const profsArrSub = cleanStats(course, "average_professor_subject")
-
             const workArrSub = cleanStats(course, "average_workload_subject")
     
+            // SHOW PAGE HTML
 
-            section.innerHTML = 
-
+            show_section.innerHTML = 
 
             `
             <div class="m-auto row">
@@ -412,17 +386,14 @@ main_body.addEventListener('click', event => {
             </div>
             `
             
-            
-
-            main_body.append(section)
+            main_body.append(show_section)
 
 
             // COMMENTS SECTION
             const comments_section = document.createElement('section')
-
             comments_section.classList.add("comments")
 
-
+            // handle comments html
             comments_section.innerHTML = 
             `
             <div class="container mt-5 mb-6" id="comments">
@@ -453,16 +424,19 @@ main_body.addEventListener('click', event => {
             </div>
             `
 
-
             main_body.append(comments_section)
-            // main_body.append(new_comment)
+            
+
+            // ADD BACK BTN
 
             const btn = document.createElement('button')
             btn.classList.add('btn-primary')
             btn.classList.add('btn')
             btn.classList.add('mt-3')
             btn.type = "button"
-    
+
+            // add fcn to bring back table w/o page refresh
+            // ensures that chosen season persists
             btn.onclick = () => { 
                 main_body.innerHTML = ""
                 refreshTable()
@@ -483,9 +457,7 @@ main_body.addEventListener('click', event => {
             btn_container.append(btn)
 
 
-
-
-            
+            // FETCH COMMENTS FROM API
             course.comments.forEach(comment => {
 
                 fetch(`http://127.0.0.1:3000/comments/${comment.id}`)
@@ -495,25 +467,25 @@ main_body.addEventListener('click', event => {
                 })
             })
 
+            // CREATE NEW COMMENT FORM
+
             const comment_form = document.querySelector('form#comment-form')
 
+            // handle when comment is submitted
             comment_form.addEventListener('submit', event => {
                 event.preventDefault()
 
                 updateNumComments()
 
-
-
                 const comments_div = document.querySelector('div#comments')
 
-                const student_id = 1
+                const student_id = 1 // change later w/ auth
 
                 const content = event.target[0].value
 
                 const course_id = course.id
 
                 const vote_score = 0
-
 
                 const commentObj = {
                     student_id,
@@ -523,6 +495,7 @@ main_body.addEventListener('click', event => {
                 }
 
                 comment_form.reset()
+
                 fetch('http://localhost:3000/comments', {
                     method: 'POST',
                     headers: {
@@ -532,18 +505,16 @@ main_body.addEventListener('click', event => {
                 })
                     .then(r => r.json())
                     .then(createOneComment)
-
-                
-                
-
             })
+
+            // HANDLE WHEN COMMENT IS UPDATED OR DELETED
 
             comments_section.addEventListener('click', event => {
                 if (event.target.matches('button.edit-btn')) {
 
+                    // comment being updated
+
                     const commented_section = event.target.closest("div.commented-section")
-
-
                     const box = commented_section.querySelector('div.comment-box')
 
                     // const id = box.dataset.id
