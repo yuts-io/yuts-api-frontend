@@ -31,7 +31,7 @@ main_body.addEventListener('click', event => {
         const btn = document.createElement('button')
         btn.classList.add('btn-primary')
         btn.classList.add('btn')
-        // btn.classList.add('btn-sm')
+        btn.classList.add('mt-3')
         btn.type = "button"
 
         btn.onclick = () => { 
@@ -144,22 +144,13 @@ main_body.addEventListener('click', event => {
 
             const section_course = checkIfBlank(course, "section", true)
 
-            let gut_index = checkIfBlank(course, "gut_index")
+            const gut_index = cleanOneStat(course, "gut_index")
+            const average_rating = cleanOneStat(course, "average_rating")
+            const average_professor= cleanOneStat(course, "average_professor")
+            const average_workload = cleanOneStat(course, "average_workload")
 
-            gut_index === "N/A" ? gut_index = "N/A" : gut_index = course.gut_index.toFixed(2)
-        
-            let average_rating = checkIfBlank(course, "average_rating")
-
-            average_rating === "N/A" ? average_rating = "N/A" : average_rating = course.average_rating.toFixed(2)
             
-            let average_professor = checkIfBlank(course, "average_professor")
-
-            average_professor === "N/A" ? average_professor = "N/A" : average_professor = course.average_professor.toFixed(2)
-            
-            let average_workload = checkIfBlank(course, "average_workload")
-
-            average_workload === "N/A" ? average_workload = "N/A" : average_workload = course.average_workload.toFixed(2)
-
+       
 
 
             const gutsArr = cleanStats(course, "gut_index")
@@ -220,6 +211,25 @@ main_body.addEventListener('click', event => {
                                             ${average_workload}
                                         </div>
                                     </div>
+                                        <div class="col">
+                                            Gut Rank
+                                        </div>
+                                        <div class="col">
+                                            Gut Subj Rank
+                                        </div>
+                                        <div class="col">
+                                            Prof Rank
+                                        </div>
+                                        <div class="col">
+                                            Prof Subj Rank
+                                        </div>
+                                        <div class="col">
+                                            Work Rank
+                                        </div>
+                                        <div class="col">
+                                            Work Subj Rank
+                                        </div>
+        
                                 </div>
                             
                                 
@@ -229,8 +239,8 @@ main_body.addEventListener('click', event => {
                     <div class="m-auto pt-4 pb-2 row">
                         <div class="px-0 col-sm-2 col-2"><span class="CourseModalOverview_lable_bubble__20zUT">Syllabus</span></div>
                         <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4"><span class="sc-jrQzUz jUiVDr">${syll_url}</span></div>
-                        <div class="px-0 col-sm-3 col-3"><span class="CourseModalOverview_lable_bubble__20zUT">Location</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-3 col-3">${location}</div>
+                        <div class="px-0 col-sm-2 col-2"><span class="CourseModalOverview_lable_bubble__20zUT">Location</span></div>
+                        <div class="CourseModalOverview_metadata__2fCzj col-sm-2 col-2">${location}</div>
 
     
 
@@ -334,7 +344,7 @@ main_body.addEventListener('click', event => {
                     </div>
                     <div class="m-auto py-1 justify-content-end row">
                         <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 me-3 text-center col-10" style="flex: 0 0 auto;">
-                            <h5>${course.subject + " subject stats"}</h5>
+                            <h5>${course.subject + " Subject Stats"}</h5>
                             <hr>
                         </div>
 
@@ -349,7 +359,7 @@ main_body.addEventListener('click', event => {
                         <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Range</span></div>
 
                     </div>
-                    <div class="m-auto py-1 justify-content-center row">
+                    <div class="m-auto mt-1 py-1 justify-content-center row">
                         <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
                             <strong>${course.subject} Gut Index</strong>
                             
@@ -370,7 +380,7 @@ main_body.addEventListener('click', event => {
                             <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${gutsArrSub[4]}</div>
                         </div>
                     </div>
-                    <div class="m-auto py-1 justify-content-center row">
+                    <div class="m-auto mt-1 py-1 justify-content-center row">
                         <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
                             <strong>${course.subject} Prof Rating</strong>
                            
@@ -391,7 +401,7 @@ main_body.addEventListener('click', event => {
                             <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${profsArrSub[4]}</div>
                         </div>
                     </div>
-                    <div class="m-auto py-1 justify-content-center row">
+                    <div class="m-auto mt-1 py-1 justify-content-center row">
                         <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
                             <strong>${course.subject} Workload Rating</strong>
                         

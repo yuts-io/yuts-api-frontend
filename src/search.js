@@ -1,5 +1,5 @@
 function search() {
-    console.log("searched")
+    
     const searchBar = document.querySelector('input#searchBar')
     const filter = searchBar.value.toUpperCase()
     const rows = document.querySelectorAll("tbody#catalog-body tr.course")
@@ -84,6 +84,14 @@ function cleanStats(course, subject) {
     statsArr.push(range)
 
     return statsArr
+}
+
+function cleanOneStat(course, attr) {
+    let result = checkIfBlank(course, attr)
+
+    result === "N/A" ? result = "N/A" : result = course[attr].toFixed(2)
+
+    return result
 }
 
 
