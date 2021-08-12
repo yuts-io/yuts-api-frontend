@@ -157,6 +157,10 @@ main_body.addEventListener('click', event => {
 
             const professor_sub_rank = cleanOneStat(course, "professor_percentile_subject", true)
 
+            const work_rank = cleanOneStat(course, "workload_percentile", true)
+
+            const work_sub_rank = cleanOneStat(course, "workload_percentile_subject", true)
+
 
 
        
@@ -208,9 +212,6 @@ main_body.addEventListener('click', event => {
                                             ${gut_index}
                                         </div>
                                         <div class="col">
-                                            ${average_rating}
-                                        </div>
-                                        <div class="col">
                                             ${average_professor}
                                         </div>
                                         <div class="col">
@@ -222,13 +223,10 @@ main_body.addEventListener('click', event => {
                                             Gut Rank
                                         </div>
                                         <div class="col">
-                                            Gut Subj Rank
-                                        </div>
-                                        <div class="col">
                                             Prof Rank
                                         </div>
                                         <div class="col">
-                                            Prof Subj Rank
+                                            Work Rank
                                         </div>
                                     </div>
                                     <div class="row">
@@ -236,15 +234,34 @@ main_body.addEventListener('click', event => {
                                             ${gut_rank}
                                         </div>
                                         <div class="col">
-                                            ${gut_sub_rank}
+                                            ${professor_rank}
                                         </div>
                                         <div class="col">
-                                            ${professor_rank}
+                                            ${work_rank}
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col">
+                                            Gut Sub Rank
+                                        </div>
+                                        <div class="col">
+                                            Prof Sub Rank
+                                        </div>
+                                        <div class="col">
+                                            Work Sub Rank
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            ${gut_sub_rank}
                                         </div>
                                         <div class="col">
                                             ${professor_sub_rank}
                                         </div>
-                                    </div>
+                                        <div class="col">
+                                            ${work_sub_rank}
+                                        </div>
+                                </div>
 
         
                                 </div>
@@ -281,7 +298,7 @@ main_body.addEventListener('click', event => {
 
                 </div>
                 <div class="px-0 my-0 col-md-7 justify-content-center">
-                    <div class="m-auto py-1 justify-content-end row">
+                    <div class="m-auto pt-4 pb-1 justify-content-end row">
                         <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 me-3 text-center col-10" style="flex: 0 0 auto;">
                             <h5>${season_to_str(course.season_code) + " Stats"}</h5>
                             <hr>
@@ -359,7 +376,7 @@ main_body.addEventListener('click', event => {
                             <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${workArr[4]}</div>
                         </div>
                     </div>
-                    <div class="m-auto py-1 justify-content-end row">
+                    <div class="m-auto pt-4 pb-1 justify-content-end row">
                         <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 me-3 text-center col-10" style="flex: 0 0 auto;">
                             <h5>${course.subject + " Subject Stats"}</h5>
                             <hr>
