@@ -513,18 +513,12 @@ main_body.addEventListener('click', event => {
                 if (event.target.matches('button.edit-btn')) {
 
                     // comment being updated
-
                     const commented_section = event.target.closest("div.commented-section")
-                    const box = commented_section.querySelector('div.comment-box')
-
-                    // const id = box.dataset.id
-
-                    
-
                     const comment = commented_section.querySelector('div.comment-content')
 
                     const curr_comment_content = comment.textContent
 
+                    // create input field and fill in curr comment 
                     comment.innerHTML = `
                     <form id="update-form">
                         <div class="d-flex flex-row input-group mt-4 pb-4">
@@ -536,6 +530,8 @@ main_body.addEventListener('click', event => {
 
                     const update_comment_form = document.querySelector('form#update-form')
 
+                    // HANDLE WHEN COMMENT UPDATE FORM IS SUBMITTED
+                    
                     update_comment_form.addEventListener('submit', event => {
                         event.preventDefault()
 
@@ -544,10 +540,6 @@ main_body.addEventListener('click', event => {
                         const id = box.dataset.id
 
                         const new_comment_val = event.target[0].value
-
-                        console.log(id)
-                        console.log(box)
-
 
                         const new_comment_obj = { content: new_comment_val }
 
@@ -561,15 +553,15 @@ main_body.addEventListener('click', event => {
                           })
                           .then(r => r.json())
                           .then(updatedComment => {
-                            comment.innerHTML = `<div class="p-2 align-self-center col-lg comment-content" style="font-size:1.15rem; word-wrap: break-word; width: 54vmin;">${updatedComment.content}</div>`
+                            comment.innerHTML = `
+                            <div class="p-2 align-self-center col-lg comment-content" style="font-size:1.15rem; word-wrap: break-word; width: 54vmin;">${updatedComment.content}</div>
+                            `
                           })
-
-
                     })
-
-
                 }
                 else if (event.target.matches('button.delete-btn')) {
+
+                    // HANDLE WHEN COMMENT DELETED
 
                     const commented_section = event.target.closest("div.commented-section")
 
@@ -586,6 +578,7 @@ main_body.addEventListener('click', event => {
                       })
 
                 }
+                //  HANDLE UPVOTE/DOWN VOTE
                 else if (event.target.matches('i.upvote')) {
                     console.log("clicked")
 
@@ -609,14 +602,6 @@ main_body.addEventListener('click', event => {
                                 createVote(event)
                             }
                         })
-
-
-                    
-
-
-
-
-
                 }
                 else if (event.target.matches('i.downvote')) {
                     console.log("clicked")
@@ -628,34 +613,24 @@ main_body.addEventListener('click', event => {
                     fetch(`http://localhost:3000/students/${curr_student_id}`)
                     .then(r => r.json())
                     .then(student => {
-
+                        // downvote is already clicked, unclick it
                         if (event.target.classList.contains('active')) {
                             patchDownVote(event, up, student)
                             deleteVote(event, student)
     
                         } 
+                        // upvote is already active, change to downvote
                         else if (up.classList.contains('active')) {
                             patchDownVote(event, up, student, true)
 
-                            
-    
-                        } else {
+                        } 
+                        // create new vote (no vote is cast already)
+                        else {
                             createVote(event, true)
                         }
                     })
-
-
-
-
-
-
                 }
             })
-
-
-
-
-
         })
     }
 })

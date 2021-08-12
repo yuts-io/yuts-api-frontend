@@ -55,7 +55,7 @@ function patchUpVote(event, downvoteEle, student, decrease=false) {
     let upvote;
 
     if (decrease) {
-        upvote = false
+        upvote = true
     } else {
         upvote = null
     }
