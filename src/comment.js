@@ -22,8 +22,6 @@ function createOneComment(commentObj) {
     newComment.classList.add('commented-section')
     newComment.classList.add('mt-2')
 
-    // let vote_ids = commentObj.votes.map(vote => vote.id).toString()
-
     fetch(`http://127.0.0.1:3000/students/${commentObj.student_id}`)
     .then(r => r.json())
     .then(student => {
