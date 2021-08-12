@@ -86,10 +86,16 @@ function cleanStats(course, subject) {
     return statsArr
 }
 
-function cleanOneStat(course, attr) {
+function cleanOneStat(course, attr, rank=false) {
     let result = checkIfBlank(course, attr)
 
     result === "N/A" ? result = "N/A" : result = course[attr].toFixed(2)
+
+    if (rank) {
+        if (result != "N/A") {
+           result =  ordinal(Math.round(result))
+        }
+    }
 
     return result
 }

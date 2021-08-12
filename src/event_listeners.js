@@ -149,7 +149,16 @@ main_body.addEventListener('click', event => {
             const average_professor= cleanOneStat(course, "average_professor")
             const average_workload = cleanOneStat(course, "average_workload")
 
-            
+            const gut_rank = cleanOneStat(course, "gut_percentile", true)
+
+            const gut_sub_rank = cleanOneStat(course, "gut_percentile_subject", true)
+
+            const professor_rank = cleanOneStat(course, "professor_percentile", true)
+
+            const professor_sub_rank = cleanOneStat(course, "professor_percentile_subject", true)
+
+
+
        
 
 
@@ -180,15 +189,12 @@ main_body.addEventListener('click', event => {
                         <div class="card">
                             
                             <div class="card-body" id="back-btn-container">
-                                <h5 class="card-title">${course.course_code} Stats</h5>
-                                <hr>
+                                <h5 class="card-title">${course.course_code} Stats<span class="pe-2 mt-2" style="float: right; font-size: .85rem"> Overall Rating: ${average_rating}</span></h5>
+                                <hr class="mt-1">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col">
                                             Gut Index
-                                        </div>
-                                        <div class="col">
-                                            Overall Rating
                                         </div>
                                         <div class="col">
                                             Prof Rating
@@ -211,6 +217,7 @@ main_body.addEventListener('click', event => {
                                             ${average_workload}
                                         </div>
                                     </div>
+                                    <div class="row mt-2">
                                         <div class="col">
                                             Gut Rank
                                         </div>
@@ -223,12 +230,22 @@ main_body.addEventListener('click', event => {
                                         <div class="col">
                                             Prof Subj Rank
                                         </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col">
-                                            Work Rank
+                                            ${gut_rank}
                                         </div>
                                         <div class="col">
-                                            Work Subj Rank
+                                            ${gut_sub_rank}
                                         </div>
+                                        <div class="col">
+                                            ${professor_rank}
+                                        </div>
+                                        <div class="col">
+                                            ${professor_sub_rank}
+                                        </div>
+                                    </div>
+
         
                                 </div>
                             
