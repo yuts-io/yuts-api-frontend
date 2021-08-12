@@ -112,14 +112,14 @@ main_body.addEventListener('click', event => {
 
             if (course.syllabus_url === null) {
                 syll_url = `
-                    <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">
+                    <div class="col-sm-9 col-8">
                         <div class="px-0 col-sm-3 col-4"><span>N/A</span></div>
                     </div>
                 `
             }
             else {
                 syll_url = `
-                <div class="CourseModalOverview_metadata__2fCzj col-sm-9 col-8">
+                <div class="col-sm-9 col-8">
                     <a target="_blank" rel="noopener noreferrer" href="${course.syllabus_url}" class="d-flex">
                     View Syllabus
                         <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20" class="ml-1 my-auto" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
@@ -305,75 +305,75 @@ main_body.addEventListener('click', event => {
                         </div>
                     </div>
                     <div class="m-auto pb-1 justify-content-center row">
-                        <div class="d-flex justify-content-center px-0 mr-3 col-5"><span class="CourseModalOverview_evaluation_header__3tqxo">Attribute</span></div>
-                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Mean</span></div>
-                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Median</span></div>
-                        <div class="d-flex ml-0 justify-content-center px-0 col-2"><span class="CourseModalOverview_evaluation_header__3tqxo">Standard Deviation</span></div>
-                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Mode</span></div>
-                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Range</span></div>
+                        <div class="d-flex justify-content-center px-0 mr-3 col-5"><span>Attribute</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span>Mean</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span>Median</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-2"><span>Standard Deviation</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span>Mode</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span>Range</span></div>
 
                     </div>
                     <div class="m-auto py-1 justify-content-center row">
                         <div class="px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
                             <strong>Gut Index</strong>
-                            <div class="CourseModalOverview_details__3Yi_F mx-auto CourseModalOverview_shown__po4mh">Section ${section_course}</div>
+                            <div class="mx-auto">Section ${section_course}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma hTudOk CourseModalOverview_rating_cell__3jrJ6 undefined">${gutsArr[0]}</div>
+                            <div>${gutsArr[0]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma dmsDBh CourseModalOverview_rating_cell__3jrJ6">${gutsArr[1]}</div>
+                            <div>${gutsArr[1]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-2">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${gutsArr[2]}</div>
+                            <div>${gutsArr[2]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${gutsArr[3]}</div>
+                            <div>${gutsArr[3]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${gutsArr[4]}</div>
+                            <div>${gutsArr[4]}</div>
                         </div>
                     </div>
                     <div class="m-auto py-1 justify-content-center row">
                         <div class="px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
                             <strong>Professor Rating</strong>
-                            <div class="CourseModalOverview_details__3Yi_F mx-auto CourseModalOverview_shown__po4mh">Section ${section_course}</div>
+                            <div class="mx-auto">Section ${section_course}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma hTudOk CourseModalOverview_rating_cell__3jrJ6 undefined">${profsArr[0]}</div>
+                            <div>${profsArr[0]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma dmsDBh CourseModalOverview_rating_cell__3jrJ6">${profsArr[1]}</div>
+                            <div>${profsArr[1]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-2">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${profsArr[2]}</div>
+                            <div>${profsArr[2]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${profsArr[3]}</div>
+                            <div>${profsArr[3]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${profsArr[4]}</div>
+                            <div>${profsArr[4]}</div>
                         </div>
                     </div>
                     <div class="m-auto py-1 justify-content-center row">
                         <div class="px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
                             <strong>Workload Rating</strong>
-                            <div class="CourseModalOverview_details__3Yi_F mx-auto CourseModalOverview_shown__po4mh">Section ${section_course}</div>
+                            <div class="mx-auto">Section ${section_course}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma hTudOk CourseModalOverview_rating_cell__3jrJ6 undefined">${workArr[0]}</div>
+                            <div>${workArr[0]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma dmsDBh CourseModalOverview_rating_cell__3jrJ6">${workArr[1]}</div>
+                            <div>${workArr[1]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-2">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${workArr[2]}</div>
+                            <div>${workArr[2]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${workArr[3]}</div>
+                            <div>${workArr[3]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${workArr[4]}</div>
+                            <div>${workArr[4]}</div>
                         </div>
                     </div>
                     <div class="m-auto pt-4 pb-1 justify-content-end row">
@@ -385,12 +385,12 @@ main_body.addEventListener('click', event => {
                         
                     </div>
                     <div class="m-auto pb-1 justify-content-center row">
-                        <div class="d-flex justify-content-center px-0 mr-3 col-5"><span class="CourseModalOverview_evaluation_header__3tqxo">Attribute</span></div>
-                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Mean</span></div>
-                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Median</span></div>
-                        <div class="d-flex ml-0 justify-content-center px-0 col-2"><span class="CourseModalOverview_evaluation_header__3tqxo">Standard Deviation</span></div>
-                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Mode</span></div>
-                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span class="CourseModalOverview_evaluation_header__3tqxo">Range</span></div>
+                        <div class="d-flex justify-content-center px-0 mr-3 col-5"><span>Attribute</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span>Mean</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span>Median</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-2"><span>Standard Deviation</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span>Mode</span></div>
+                        <div class="d-flex ml-0 justify-content-center px-0 col-1"><span>Range</span></div>
 
                     </div>
                     <div class="m-auto mt-1 py-1 justify-content-center row">
@@ -399,19 +399,19 @@ main_body.addEventListener('click', event => {
                             
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma hTudOk CourseModalOverview_rating_cell__3jrJ6 undefined">${gutsArrSub[0]}</div>
+                            <div>${gutsArrSub[0]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma dmsDBh CourseModalOverview_rating_cell__3jrJ6">${gutsArrSub[1]}</div>
+                            <div>${gutsArrSub[1]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-2">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${gutsArrSub[2]}</div>
+                            <div>${gutsArrSub[2]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${gutsArrSub[3]}</div>
+                            <div>${gutsArrSub[3]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${gutsArrSub[4]}</div>
+                            <div>${gutsArrSub[4]}</div>
                         </div>
                     </div>
                     <div class="m-auto mt-1 py-1 justify-content-center row">
@@ -420,19 +420,19 @@ main_body.addEventListener('click', event => {
                            
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma hTudOk CourseModalOverview_rating_cell__3jrJ6 undefined">${profsArrSub[0]}</div>
+                            <div>${profsArrSub[0]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma dmsDBh CourseModalOverview_rating_cell__3jrJ6">${profsArrSub[1]}</div>
+                            <div>${profsArrSub[1]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-2">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${profsArrSub[2]}</div>
+                            <div>${profsArrSub[2]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${profsArrSub[3]}</div>
+                            <div>${profsArrSub[3]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${profsArrSub[4]}</div>
+                            <div>${profsArrSub[4]}</div>
                         </div>
                     </div>
                     <div class="m-auto mt-1 py-1 justify-content-center row">
@@ -441,19 +441,19 @@ main_body.addEventListener('click', event => {
                         
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma hTudOk CourseModalOverview_rating_cell__3jrJ6 undefined">${workArrSub[0]}</div>
+                            <div>${workArrSub[0]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma dmsDBh CourseModalOverview_rating_cell__3jrJ6">${workArrSub[1]}</div>
+                            <div>${workArrSub[1]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-2">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${workArrSub[2]}</div>
+                            <div>${workArrSub[2]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${workArrSub[3]}</div>
+                            <div>${workArrSub[3]}</div>
                         </div>
                         <div class="px-1 ml-0 d-flex justify-content-center text-center col-1">
-                            <div class="sc-pVTma bUlwbR CourseModalOverview_rating_cell__3jrJ6">${workArrSub[4]}</div>
+                            <div>${workArrSub[4]}</div>
                         </div>
                     </div>
 
