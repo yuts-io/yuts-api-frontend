@@ -1,15 +1,18 @@
 let table = document.querySelector('tbody#catalog-body')
 const seasons_dropdown = document.querySelector('ul#seasons-btn')
+// container that holds table and course show pages
 const main_body = document.querySelector('div#main-body')
 const searchForm = document.querySelector('form#searchForm')
 
+// The amount of courses loaded on page load
+// OFFSET # courses are loaded, then the rest follow
 const OFFSET = 150
 
-
+// change which semester the user sees in the table
 seasons_dropdown.addEventListener('click', event => {
     if (event.target.matches('li.season')) {
-        const season = parseInt(event.target.dataset.id)
 
+        const season = parseInt(event.target.dataset.id)
         const table_name = document.querySelector('main div h1#table-title')
 
         table_name.textContent = season_to_str(season) + " Catalog"
@@ -20,52 +23,28 @@ seasons_dropdown.addEventListener('click', event => {
     }
 })
 
+
+// MAIN EVENT LISTENER
+// HANDLES WHEN USER CLICKS A COURSE ON TABLE
+
 main_body.addEventListener('click', event => {
     if (event.target.matches('tbody td')) {
+        // grab course info
         const tr = event.target.closest('tr')
         const id = tr.dataset.id
-        console.log(id)
+        
+        // clear table
         main_body.innerHTML = ""
 
 
-        const btn = document.createElement('button')
-        btn.classList.add('btn-primary')
-        btn.classList.add('btn')
-        btn.classList.add('mt-3')
-        btn.type = "button"
-
-        btn.onclick = () => { 
-            main_body.innerHTML = ""
-            refreshTable()
-            table = document.querySelector('tbody#catalog-body')
-
-            const curr_season = main_body.dataset.id
-
-            renderNewSeasonHome(curr_season)
-            const table_name = document.querySelector('main div h1#table-title')
-
-            table_name.textContent = season_to_str(curr_season) + " Catalog"
-    
-         }
-        btn.innerHTML = "Back to Catalog"
-
-        // main_body.append(btn)
-
         const table_name = document.querySelector('main div h1#table-title')
 
-        const comments_section = document.createElement('section')
-
-        comments_section.classList.add("comments")
 
 
-    
-        
 
+        // FETCH COURSE FROM API
 
         clicked_course = getOneCourse(id)
-
-        // console.log(clicked_course)
-
         clicked_course.then(course => {
 
             table_name.textContent = course.title + ` (${season_to_str(course.season_code)})`
@@ -76,39 +55,10 @@ main_body.addEventListener('click', event => {
 
             console.log(course.syllabus_url)
 
+            
+
+
             let syll_url;
-
-            comments_section.innerHTML = 
-            `
-            <div class="container mt-5 mb-6" id="comments">
-                <div class="d-flex justify-content-center row">
-                    <div class="d-flex flex-column col-md-12">
-                        <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
-                            
-                            
-                            <div class="d-flex flex-column ml-3">
-                                <div class="d-flex flex-row post-title">
-                                    <h5 id="comments-length">Comments (${course.comments.length})</h5>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="coment-bottom bg-white p-2 px-3">
-                            <form id="comment-form">
-                                <div class="d-flex flex-row input-group mt-4 pb-4">
-                                    <textarea class="form-control" placeholder="Add comment" aria-label="With textarea"></textarea>
-                                    <button type="submit" class="btn btn-primary">Comment</button>
-                                </div>
-                            </form>
-                            <div id="comments-container">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            `
-
-     
 
             if (course.syllabus_url === null) {
                 syll_url = `
@@ -465,8 +415,68 @@ main_body.addEventListener('click', event => {
             
 
             main_body.append(section)
+
+
+            // COMMENTS SECTION
+            const comments_section = document.createElement('section')
+
+            comments_section.classList.add("comments")
+
+
+            comments_section.innerHTML = 
+            `
+            <div class="container mt-5 mb-6" id="comments">
+                <div class="d-flex justify-content-center row">
+                    <div class="d-flex flex-column col-md-12">
+                        <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
+                            
+                            
+                            <div class="d-flex flex-column ml-3">
+                                <div class="d-flex flex-row post-title">
+                                    <h5 id="comments-length">Comments (${course.comments.length})</h5>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="coment-bottom bg-white p-2 px-3">
+                            <form id="comment-form">
+                                <div class="d-flex flex-row input-group mt-4 pb-4">
+                                    <textarea class="form-control" placeholder="Add comment" aria-label="With textarea"></textarea>
+                                    <button type="submit" class="btn btn-primary">Comment</button>
+                                </div>
+                            </form>
+                            <div id="comments-container">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `
+
+
             main_body.append(comments_section)
             // main_body.append(new_comment)
+
+            const btn = document.createElement('button')
+            btn.classList.add('btn-primary')
+            btn.classList.add('btn')
+            btn.classList.add('mt-3')
+            btn.type = "button"
+    
+            btn.onclick = () => { 
+                main_body.innerHTML = ""
+                refreshTable()
+                table = document.querySelector('tbody#catalog-body')
+    
+                const curr_season = main_body.dataset.id
+    
+                renderNewSeasonHome(curr_season)
+                const table_name = document.querySelector('main div h1#table-title')
+    
+                table_name.textContent = season_to_str(curr_season) + " Catalog"
+        
+             }
+            btn.innerHTML = "Back to Catalog"
 
             const btn_container = document.querySelector('div#back-btn-container')
 

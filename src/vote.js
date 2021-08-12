@@ -67,11 +67,7 @@ function patchUpVote(event, downvoteEle, student, decrease=false) {
 
     const allVoteEles = box.getElementsByTagName('li')
 
-    console.log(allVoteEles)
 
-    // const voteEle = allVoteEles.find(voteEle => {
-    //     voteEle.innerText === student.id
-    // })
 
     let student_ids = []
     let vote_ids = []
@@ -79,32 +75,13 @@ function patchUpVote(event, downvoteEle, student, decrease=false) {
 
 
     for (let i = 0; i < allVoteEles.length; i++) {
-        // console.log(allVoteEles[i].textContent)
-        // console.log(allVoteEles[i].dataset.id)
-        // if (allVoteEles[i].textContent === student.id) {
-            
-        // }
        student_ids.push(parseInt(allVoteEles[i].textContent))
        vote_ids.push(allVoteEles[i].dataset.id)
-        // console.log(allVoteEles[i].dataset.id)
-
     }
 
-    // console.log(student_ids)
 
     const vote_id_index = student_ids.indexOf(parseInt(student.id))
 
-    
-
-
-
-    // allVoteEles.forEach(element => {
-    //     if (element.getAttribute('innerText') === student.id) {
-    //         voteId = element.getAttribute('data-id')
-    //         console.log(voteEle)
-    //     }
-    // });
-    // console.log(voteEle)
 
     fetch(`http://localhost:3000/votes/${vote_ids[vote_id_index]}`, {
         method: "PATCH",
