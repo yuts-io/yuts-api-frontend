@@ -187,7 +187,7 @@ main_body.addEventListener('click', event => {
             <div class="m-auto row">
                 <div class="px-0 mt-0 mb-3 col-md-5">
                     <div class="mx-auto row">
-                        <div class="LinesEllipsis  " style="white-space: pre-wrap;">${course.description}<wbr></div>
+                        <div>${course.description}<wbr></div>
                     </div>
                     <div class="m-auto py-2 mt-3 row">
                         <div class="card">
@@ -271,25 +271,25 @@ main_body.addEventListener('click', event => {
                         </div>
                     </div>
                     <div class="m-auto pt-4 pb-2 row">
-                        <div class="px-0 col-sm-2 col-2"><span class="CourseModalOverview_lable_bubble__20zUT">Syllabus</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4"><span class="sc-jrQzUz jUiVDr">${syll_url}</span></div>
-                        <div class="px-0 col-sm-2 col-2"><span class="CourseModalOverview_lable_bubble__20zUT">Location</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-2 col-2">${location}</div>
+                        <div class="px-0 col-sm-2 col-2"><span>Syllabus</span></div>
+                        <div class="col-sm-4 col-4"><span>${syll_url}</span></div>
+                        <div class="px-0 col-sm-2 col-2"><span>Location</span></div>
+                        <div class="col-sm-2 col-2">${location}</div>
 
     
 
                     </div>
                     <div class="m-auto py-2 row">
-                        <div class="px-0 col-sm-2 col-2"><span class="CourseModalOverview_lable_bubble__20zUT">Professor</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4"><span class="sc-jrQzUz jUiVDr">${prof}</span></div>
-                        <div class="px-0 col-sm-2 col-2"><span class="CourseModalOverview_lable_bubble__20zUT">Meets</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4">${meets}</div>
+                        <div class="px-0 col-sm-2 col-2"><span>Professor</span></div>
+                        <div class="col-sm-4 col-4"><span>${prof}</span></div>
+                        <div class="px-0 col-sm-2 col-2"><span>Meets</span></div>
+                        <div class="col-sm-4 col-4">${meets}</div>
                     </div>
                     <div class="m-auto py-2 row">
                         <div class="px-0 col-sm-2 col-2"><span class="align-middle">Credits</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4"><span class="align-middle">${creds}</span></div>
-                        <div class="px-0 col-sm-2 col-2"><span class="CourseModalOverview_lable_bubble__20zUT">Enrollment</span></div>
-                        <div class="CourseModalOverview_metadata__2fCzj col-sm-4 col-4">${enrollment}</div>
+                        <div class="col-sm-4 col-4"><span class="align-middle">${creds}</span></div>
+                        <div class="px-0 col-sm-2 col-2"><span>Enrollment</span></div>
+                        <div class="col-sm-4 col-4">${enrollment}</div>
                     </div>
                 
                     <div class="m-auto py-2 row">
@@ -299,7 +299,7 @@ main_body.addEventListener('click', event => {
                 </div>
                 <div class="px-0 my-0 col-md-7 justify-content-center">
                     <div class="m-auto pt-4 pb-1 justify-content-end row">
-                        <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 me-3 text-center col-10" style="flex: 0 0 auto;">
+                        <div class="px-0 me-3 text-center col-10" style="flex: 0 0 auto;">
                             <h5>${season_to_str(course.season_code) + " Stats"}</h5>
                             <hr>
                         </div>
@@ -314,7 +314,7 @@ main_body.addEventListener('click', event => {
 
                     </div>
                     <div class="m-auto py-1 justify-content-center row">
-                        <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
+                        <div class="px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
                             <strong>Gut Index</strong>
                             <div class="CourseModalOverview_details__3Yi_F mx-auto CourseModalOverview_shown__po4mh">Section ${section_course}</div>
                         </div>
@@ -335,7 +335,7 @@ main_body.addEventListener('click', event => {
                         </div>
                     </div>
                     <div class="m-auto py-1 justify-content-center row">
-                        <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
+                        <div class="px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
                             <strong>Professor Rating</strong>
                             <div class="CourseModalOverview_details__3Yi_F mx-auto CourseModalOverview_shown__po4mh">Section ${section_course}</div>
                         </div>
@@ -356,7 +356,7 @@ main_body.addEventListener('click', event => {
                         </div>
                     </div>
                     <div class="m-auto py-1 justify-content-center row">
-                        <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
+                        <div class="px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
                             <strong>Workload Rating</strong>
                             <div class="CourseModalOverview_details__3Yi_F mx-auto CourseModalOverview_shown__po4mh">Section ${section_course}</div>
                         </div>
@@ -377,7 +377,7 @@ main_body.addEventListener('click', event => {
                         </div>
                     </div>
                     <div class="m-auto pt-4 pb-1 justify-content-end row">
-                        <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 me-3 text-center col-10" style="flex: 0 0 auto;">
+                        <div class="px-0 me-3 text-center col-10" style="flex: 0 0 auto;">
                             <h5>${course.subject + " Subject Stats"}</h5>
                             <hr>
                         </div>
@@ -394,7 +394,7 @@ main_body.addEventListener('click', event => {
 
                     </div>
                     <div class="m-auto mt-1 py-1 justify-content-center row">
-                        <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
+                        <div class="px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
                             <strong>${course.subject} Gut Index</strong>
                             
                         </div>
@@ -415,7 +415,7 @@ main_body.addEventListener('click', event => {
                         </div>
                     </div>
                     <div class="m-auto mt-1 py-1 justify-content-center row">
-                        <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
+                        <div class="px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
                             <strong>${course.subject} Prof Rating</strong>
                            
                         </div>
@@ -436,7 +436,7 @@ main_body.addEventListener('click', event => {
                         </div>
                     </div>
                     <div class="m-auto mt-1 py-1 justify-content-center row">
-                        <div class="sc-bTfYlY cEVPjL CourseModalOverview_rating_bubble__31UGC  px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
+                        <div class="px-0 mr-3 text-center col-5" style="flex: 0 0 auto;">
                             <strong>${course.subject} Workload Rating</strong>
                         
                         </div>
